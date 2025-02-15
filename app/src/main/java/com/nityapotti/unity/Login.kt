@@ -36,9 +36,30 @@ class Login : AppCompatActivity() {
             // retrieving password
             val password = passwordField.text.toString().trim()
 
+            // returning message to user if email data is invalid
+            if (!isValidEmail(email)) {
+                emailField.error = "Please enter a valid email."
+                return@setOnClickListener
+            }
+
             if (email.isBlank() || email.isEmpty() || password.isBlank() || password.isEmpty()) {
                 // Toast if user has left a field blank/empty
                 Toast.makeText(this, "Email/Password has not been entered.", Toast.LENGTH_SHORT).show()
+
+                // Focus on email
+                if (email.isEmpty() || email.isBlank()) {
+                    emailField.error = "Email is required"
+                    emailField.requestFocus()
+                    return@setOnClickListener
+                }
+
+                // Focus on password
+                if (password.isEmpty() || password.isBlank()) {
+                    passwordField.error = "Password is required"
+                    passwordField.requestFocus()
+                    return@setOnClickListener
+                }
+
             } else {
                 // calling the login function
                 loginUser(email, password)
@@ -52,6 +73,7 @@ class Login : AppCompatActivity() {
         }
     }
 
+    // login function
     private fun loginUser(email: String, password: String) {
         // using the sign in with email and password feature
         auth.signInWithEmailAndPassword(email, password)
@@ -67,5 +89,10 @@ class Login : AppCompatActivity() {
                     Toast.makeText(this, "Incorrect password/email", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    // email validation function
+    private fun isValidEmail(email: String): Boolean {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }
