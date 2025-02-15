@@ -39,6 +39,7 @@ class Login : AppCompatActivity() {
             // returning message to user if email data is invalid
             if (!isValidEmail(email)) {
                 emailField.error = "Please enter a valid email."
+                emailField.requestFocus()
                 return@setOnClickListener
             }
 
