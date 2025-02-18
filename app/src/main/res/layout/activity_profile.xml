@@ -25,11 +25,11 @@
         android:id="@+id/btnLogOut"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Log out"
-        android:background="@drawable/logout_button"
-        android:textColor="#ffffff"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button"
         android:padding="12dp"
-        android:textSize="18sp"
-        android:layout_marginTop="24dp"/>
+        android:text="Log out"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
 
 </LinearLayout>

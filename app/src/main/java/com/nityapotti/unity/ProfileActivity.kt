@@ -2,6 +2,7 @@ package com.nityapotti.unity
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -21,17 +22,19 @@ class ProfileActivity : AppCompatActivity() {
         val user = auth.currentUser
         val textView = findViewById<TextView>(R.id.user_details);
 
-
         if (user == null) {
-            // Go to Login Page
             textView.setText("You are not logged in. ");
+            btnLogOut.visibility = View.INVISIBLE
+            // Go to Login Page
         }
         else {
             textView.setText(user.email);
+            btnLogOut.visibility = View.VISIBLE
         }
 
         btnLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
+            btnLogOut.visibility = View.INVISIBLE
             // Go to Login Page
         }
     }
