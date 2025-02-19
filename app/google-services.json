@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "572441949108",
+    "project_id": "unity-bc153",
+    "storage_bucket": "unity-bc153.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572441949108:android:39ed7826c3373171ad78e1",
+        "android_client_info": {
+          "package_name": "com.nityapotti.unity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfYHDGIUsWpteh5viofdxL863oW7Yz5uU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:572441949108:android:d93c6258057b0f58ad78e1",
+        "android_client_info": {
+          "package_name": "com.nityapotti01.unity"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfYHDGIUsWpteh5viofdxL863oW7Yz5uU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
