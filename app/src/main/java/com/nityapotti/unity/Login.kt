@@ -3,6 +3,7 @@ package com.nityapotti.unity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -28,6 +29,7 @@ class Login : AppCompatActivity() {
         val emailField = findViewById<TextInputEditText>(R.id.email)
         val passwordField = findViewById<TextInputEditText>(R.id.password)
         val btn_login = findViewById<Button>(R.id.btn_login)
+        val forgot_passwordField = findViewById<TextView>(R.id.forgot_password)
 
         btn_login.setOnClickListener{
             // retrieving email
@@ -67,6 +69,10 @@ class Login : AppCompatActivity() {
             }
         }
 
+        forgot_passwordField.setOnClickListener{
+            // implementation remaining -> call function at end of script. create bottom dialog sheet.
+        }
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -95,5 +101,16 @@ class Login : AppCompatActivity() {
     // email validation function
     private fun isValidEmail(email: String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    // reset password function
+    private fun sendPasswordResetEmail(email: String) {
+        // send request to firebase to reset password.
+        auth.sendPasswordResetEmail(email).addOnCompleteListener{ task ->
+            // on request completion, display success msg
+            if (task.isComplete) {
+                Toast.makeText(this, "Email has been sent if account exists.", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }
