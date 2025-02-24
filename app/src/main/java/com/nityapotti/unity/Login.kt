@@ -9,18 +9,38 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.nityapotti.unity.databinding.ActivityLoginBinding
 
 class Login : AppCompatActivity() {
 
     // create an instance to store firebase auth.
     private lateinit var auth: FirebaseAuth
 
+    // creating a late init var for binding layout file with the bottom sheet dialog
+    private lateinit var binding: ActivityLoginBinding
+
+    private lateinit var forgotPasswordViewModel: ForgotPasswordViewModel
+
+    private var forgotPasswordEmail: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_login)
+
+        // inflating XML layout, establishing access to views, setting content view
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        forgotPasswordViewModel = ViewModelProvider(this).get(ForgotPasswordViewModel::class.java)
+        binding.forgotPassword.setOnClickListener{
+            ForgotPassword().show(supportFragmentManager, "forgotPasswordFragment")
+        }
+
+        forgotPasswordViewModel.forgotUserEmail.observe(this) {
+            forgotPasswordEmail = it
+        }
 
         // retrieving instance of firebase auth
         auth = FirebaseAuth.getInstance();
@@ -29,7 +49,7 @@ class Login : AppCompatActivity() {
         val emailField = findViewById<TextInputEditText>(R.id.email)
         val passwordField = findViewById<TextInputEditText>(R.id.password)
         val btn_login = findViewById<Button>(R.id.btn_login)
-        val forgot_passwordField = findViewById<TextView>(R.id.forgot_password)
+        val forgot_passwordField = findViewById<TextView>(R.id.forgotPassword)
 
         btn_login.setOnClickListener{
             // retrieving email
