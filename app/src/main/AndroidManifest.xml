@@ -36,6 +36,9 @@
         <activity android:name=".RegisterActivity"
             android:exported="false"/>
 
+        <activity android:name=".PreferenceFormActivity"
+            android:exported="false"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true">
