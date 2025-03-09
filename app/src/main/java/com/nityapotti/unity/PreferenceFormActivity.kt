@@ -57,6 +57,7 @@ class PreferenceFormActivity : AppCompatActivity() {
                 Toast.makeText(this, "Preferences saved successfully!", Toast.LENGTH_SHORT).show()
                 val intent = Intent(this, ProfileActivity::class.java)
                 startActivity(intent)
+                finish()
             }
             .addOnFailureListener { e ->
                 Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
