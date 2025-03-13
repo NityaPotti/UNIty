@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFEB99"
+    android:gravity="center"
+    android:padding="24dp">
+
+    <!-- Gender -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What is your gender?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#442222" />
+
+    <RadioGroup
+        android:id="@+id/rgGender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbMale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Male" />
+
+        <RadioButton
+            android:id="@+id/rbFemale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Female" />
+
+        <RadioButton
+            android:id="@+id/rbOther"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other" />
+    </RadioGroup>
+
+    <!-- Temperature -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="What's your preferable temperature?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#442222" />
+
+    <RadioGroup
+        android:id="@+id/rgTemperature"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbCooler"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make it cooler (-459 to 60 F)" />
+
+        <RadioButton
+            android:id="@+id/rbTemperate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make it somewhere in the middle (60 to 80 F)" />
+
+        <RadioButton
+            android:id="@+id/rbWarmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make it warmer (80 to 9999 F)" />
+    </RadioGroup>
+
+    <!-- Bedtime -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="When do you go to bed?"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#442222" />
+
+    <RadioGroup
+        android:id="@+id/rgBedtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbBedtime0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Before 10PM" />
+
+        <RadioButton
+            android:id="@+id/rbBedtime1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10PM - 11PM" />
+
+        <RadioButton
+            android:id="@+id/rbBedtime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="11PM - 12AM" />
+
+        <RadioButton
+            android:id="@+id/rbBedtime3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="After 12AM" />
+    </RadioGroup>
+
+    <!-- Submit button -->
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/button"
+        android:padding="12dp"
+        android:text="Submit"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
+
+</LinearLayout>

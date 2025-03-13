@@ -42,6 +42,8 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
                     startActivity(Intent(this, MainActivity::class.java))
                     //Todo: later change to LoginActivity
+                    val intent = Intent(this, PreferenceFormActivity::class.java)
+                    startActivity(intent)
                     finish()
                 } else {
                     Toast.makeText(this, "Error: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
