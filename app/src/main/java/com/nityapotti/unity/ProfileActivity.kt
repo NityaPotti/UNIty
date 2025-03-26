@@ -9,11 +9,13 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +36,25 @@ class ProfileActivity : AppCompatActivity() {
         else {
             textView.setText(user.email);
             btnLogOut.visibility = View.VISIBLE
+        }
+
+        val uid = auth.currentUser?.uid
+        val userDoc = db.collection("users").document(uid.toString())
+        val visibilitySwitch = findViewById<com.google.android.material.materialswitch.MaterialSwitch>(R.id.visibilitySwitch)
+
+        userDoc.get().addOnSuccessListener { DocumentSnapshot ->
+            if (!DocumentSnapshot.exists()) {
+                val preference = Preference(false)
+                db.collection("users")
+                    .document(uid.toString())
+                    .set(preference)
+            }
+            visibilitySwitch.isChecked = DocumentSnapshot.getBoolean("visible") ?: false
+
+        }
+
+        visibilitySwitch.setOnCheckedChangeListener { _, isChecked ->
+            userDoc.update("visible", isChecked)
         }
 
         btnLogOut.setOnClickListener {
