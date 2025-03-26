@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.nityapotti.unity.databinding.ActivityLoginBinding
+import android.content.Intent
 
 class Login : AppCompatActivity() {
 
@@ -112,11 +113,17 @@ class Login : AppCompatActivity() {
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
 
+
                     // navigating to the NavigationMenu activity
                     val intent = Intent(this, NavigationMenu::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
                     finish() // Closes the login activity so user can't go back
+// =======
+//                     // move to the next activity here!
+//                     val intent = Intent(this, ProfileActivity::class.java)
+//                     startActivity(intent)
+// >>>>>>> main
                 }
                 // login details are incorrect.
                 else {
