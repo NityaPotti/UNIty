@@ -25,7 +25,8 @@ class ProfileActivity : AppCompatActivity() {
         val btnLogOut = findViewById<Button>(R.id.btnLogOut)
         val btnPreferenceForm = findViewById<Button>(R.id.btnPreferenceForm)
         val user = auth.currentUser
-        val textView = findViewById<TextView>(R.id.user_details);
+        val textView = findViewById<TextView>(R.id.user_details)
+        val btnFindRoommates = findViewById<Button>(R.id.btnFindRoommates)
 
         if (user == null) {
             textView.setText("You are not logged in. ");
@@ -66,6 +67,11 @@ class ProfileActivity : AppCompatActivity() {
 
         btnPreferenceForm.setOnClickListener {
             val intent = Intent(this, PreferenceFormActivity::class.java)
+            startActivity(intent)
+        }
+
+        btnFindRoommates.setOnClickListener {
+            val intent = Intent(this, RoommateFinderActivity::class.java)
             startActivity(intent)
         }
     }

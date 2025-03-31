@@ -118,9 +118,10 @@
         android:backgroundTint="#FFDD55"/>
 
     <TextView
+        android:id="@+id/registerText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register"
+        android:text="New to UNIty? Register here!"
         android:textSize="17sp"
         android:textColor="#0099CC"
         android:gravity="center"
