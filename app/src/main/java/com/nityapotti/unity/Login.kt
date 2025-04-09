@@ -53,6 +53,12 @@ class Login : AppCompatActivity() {
         val passwordField = findViewById<TextInputEditText>(R.id.password)
         val btn_login = findViewById<Button>(R.id.btn_login)
         val forgot_passwordField = findViewById<TextView>(R.id.forgotPassword)
+        val registerText = findViewById<TextView>(R.id.registerText)
+
+        registerText.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         btn_login.setOnClickListener{
             // retrieving email

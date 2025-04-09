@@ -39,6 +39,13 @@
             android:exported="false"/>
 
 
+        <activity android:name=".RoommateFinderActivity"
+        android:exported="false"/>
+
+        <activity android:name=".UserDetailActivity"
+            android:exported="false"/>
+
+
         <activity
             android:name=".MainActivity"
             android:exported="true"></activity>
