@@ -3,12 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.nityapotti.unity">
 
-    <uses-permission android:name="android.permission.INTERNET">
-
-    </uses-permission>
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -21,30 +18,30 @@
         android:theme="@style/Theme.UNIty"
         tools:targetApi="31">
         <activity
+            android:name=".NavigationMenu"
+            android:exported="false" />
+        <activity
             android:name=".Login"
-            android:theme="@style/Theme.UNIty"
-            android:exported="true">
+            android:exported="true"
+            android:theme="@style/Theme.UNIty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ProfileActivity"
                   android:exported="false"/>
-                        
-        <activity android:name=".RegisterActivity"
-            android:exported="false"/>
+                       
 
         <activity android:name=".PreferenceFormActivity"
             android:exported="false"/>
 
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
-
-
+            android:exported="true"></activity>
     </application>
 
 </manifest>
