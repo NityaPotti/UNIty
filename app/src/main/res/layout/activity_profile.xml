@@ -32,6 +32,12 @@
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
+    <com.google.android.material.materialswitch.MaterialSwitch
+        android:id="@+id/visibilitySwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Is your profile public?" />
+
     <!-- Preference form Button -->
     <Button
         android:id="@+id/btnPreferenceForm"
@@ -43,5 +49,11 @@
         android:text="Change preferences"
         android:textColor="#ffffff"
         android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnAddPhotos"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:text="Add photos" />
 
 </LinearLayout>
