@@ -50,6 +50,13 @@
         android:textColor="#ffffff"
         android:textSize="18sp" />
 
+
+    <Button
+        android:id="@+id/btnAddPhotos"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:text="Add photos" />
+
     <!-- Find roommates Button -->
     <Button
         android:id="@+id/btnFindRoommates"
@@ -61,5 +68,6 @@
         android:text="Find roommates"
         android:textColor="#ffffff"
         android:textSize="18sp" />
+
 
 </LinearLayout>

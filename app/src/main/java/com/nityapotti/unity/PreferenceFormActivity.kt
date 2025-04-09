@@ -14,11 +14,20 @@ class PreferenceFormActivity : AppCompatActivity() {
     private lateinit var rgGender: RadioGroup
     private lateinit var rgTemperature: RadioGroup
     private lateinit var rgBedtime: RadioGroup
-    private lateinit var bioInput: EditText
-    private lateinit var nameInput: EditText
+    private lateinit var seekBarCleaniness: SeekBar
+    private lateinit var rgOnCampus: RadioGroup
+    private lateinit var rgLocation: RadioGroup
+    private lateinit var rgLLC: RadioGroup
+    private lateinit var seekBarMaxRent: SeekBar
+    private lateinit var editTextAbout: EditText
     private lateinit var btnSubmit: Button
+    private var visibility = false;
+
+    private lateinit var nameInput: EditText
+
     private lateinit var btnBack: Button
-    private var visibility = false
+    
+
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,9 +40,15 @@ class PreferenceFormActivity : AppCompatActivity() {
         rgGender = findViewById(R.id.rgGender)
         rgTemperature = findViewById(R.id.rgTemperature)
         rgBedtime = findViewById(R.id.rgBedtime)
-        bioInput = findViewById(R.id.Bio)
-        nameInput = findViewById(R.id.Name)
+        seekBarCleaniness = findViewById(R.id.seekBarClean)
+        rgOnCampus = findViewById(R.id.rgOnCampus)
+        rgLocation = findViewById(R.id.rgLocation)
+        rgLLC = findViewById(R.id.rgLLC)
         btnSubmit = findViewById(R.id.btnSubmit)
+        seekBarMaxRent = findViewById(R.id.seekBarMaxRent)
+        editTextAbout = findViewById(R.id.textEditAbout)
+        val userDoc = db.collection("users").document(uid.toString())
+        nameInput = findViewById(R.id.Name)
         btnBack = findViewById(R.id.btnBack)
 
         val userDoc = db.collection("users").document(uid.toString())
@@ -42,7 +57,7 @@ class PreferenceFormActivity : AppCompatActivity() {
             if (documentSnapshot.exists()) {
                 val existingBio = documentSnapshot.getString("bio")
                 if (!existingBio.isNullOrEmpty()) {
-                    bioInput.setText(existingBio)
+                    editTextAbout.setText(existingBio)
                 }
                 val existingName = documentSnapshot.getString("name")
                 if (!existingName.isNullOrEmpty()) {
@@ -52,6 +67,11 @@ class PreferenceFormActivity : AppCompatActivity() {
             }
         }
 
+        userDoc.get().addOnSuccessListener { documentSnapshot ->
+            if (documentSnapshot.exists()) {
+                visibility = documentSnapshot.getBoolean("visible") ?: false;
+            }
+        }
         btnSubmit.setOnClickListener {
             savePreferences(uid)
         }
@@ -62,7 +82,9 @@ class PreferenceFormActivity : AppCompatActivity() {
     }
 
     private fun savePreferences(uid: String?) {
+
         val nameText = nameInput.getText().toString().trim()
+
 
         var chosen = rgGender.checkedRadioButtonId
         val gender = if (chosen != -1) findViewById<RadioButton>(chosen).text.toString() else ""
@@ -80,7 +102,25 @@ class PreferenceFormActivity : AppCompatActivity() {
             return
         }
 
-        val preference = Preference(visibility, nameText, gender, temperature, bedtime, bioText)
+
+        val cleaniness = seekBarCleaniness.progress
+
+        chosen = rgOnCampus.checkedRadioButtonId
+        val oncampus = if (chosen != -1) findViewById<RadioButton>(chosen).text.toString() else ""
+
+        chosen = rgLocation.checkedRadioButtonId
+        val location = if (chosen != -1) findViewById<RadioButton>(chosen).text.toString() else ""
+
+        chosen = rgLLC.checkedRadioButtonId
+        val llc = if (chosen != -1) findViewById<RadioButton>(chosen).text.toString() else ""
+
+        val maxrent = seekBarCleaniness.progress
+
+        val about = editTextAbout.text.toString()
+
+
+        val preference = Preference(visibility, nameText, gender, temperature, bedtime, cleaniness, oncampus, location, llc, maxrent, about)
+
         db.collection("users")
             .document(uid.toString())
             .set(preference)
@@ -90,7 +130,7 @@ class PreferenceFormActivity : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-            .addOnFailureListener { e ->
+            .addOnFailureListener { e: Exception ->
                 Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
