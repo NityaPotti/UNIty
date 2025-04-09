@@ -1,5 +1,6 @@
 package com.nityapotti.unity
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -46,11 +47,18 @@ class Login : AppCompatActivity() {
         // retrieving instance of firebase auth
         auth = FirebaseAuth.getInstance();
 
+
         // initializing fields from which data is to be retrieved
         val emailField = findViewById<TextInputEditText>(R.id.email)
         val passwordField = findViewById<TextInputEditText>(R.id.password)
         val btn_login = findViewById<Button>(R.id.btn_login)
         val forgot_passwordField = findViewById<TextView>(R.id.forgotPassword)
+        val registerText = findViewById<TextView>(R.id.registerText)
+
+        registerText.setOnClickListener{
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
+        }
 
         btn_login.setOnClickListener{
             // retrieving email
@@ -110,9 +118,18 @@ class Login : AppCompatActivity() {
                 // if email and password are correct
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Login Successful", Toast.LENGTH_SHORT).show()
-                    // move to the next activity here!
-                    val intent = Intent(this, ProfileActivity::class.java)
+
+
+                    // navigating to the NavigationMenu activity
+                    val intent = Intent(this, NavigationMenu::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+                    finish() // Closes the login activity so user can't go back
+// =======
+//                     // move to the next activity here!
+//                     val intent = Intent(this, ProfileActivity::class.java)
+//                     startActivity(intent)
+// >>>>>>> main
                 }
                 // login details are incorrect.
                 else {

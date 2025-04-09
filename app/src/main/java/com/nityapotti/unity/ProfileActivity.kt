@@ -17,6 +17,7 @@ import com.google.firebase.storage.FirebaseStorage
 import java.io.IOException
 import java.util.*
 
+
 class ProfileActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -35,6 +36,8 @@ class ProfileActivity : AppCompatActivity() {
         val visibilitySwitch = findViewById<com.google.android.material.materialswitch.MaterialSwitch>(R.id.visibilitySwitch)
         val uid = auth.currentUser?.uid
         val userDoc = db.collection("users").document(uid.toString())
+        val btnFindRoommates = findViewById<Button>(R.id.btnFindRoommates)
+
 
         if (user == null) {
             textView.setText("You are not logged in. ");
@@ -46,6 +49,10 @@ class ProfileActivity : AppCompatActivity() {
             btnLogOut.visibility = View.VISIBLE
         }
 
+
+        val uid = auth.currentUser?.uid
+        val userDoc = db.collection("users").document(uid.toString())
+        val visibilitySwitch = findViewById<com.google.android.material.materialswitch.MaterialSwitch>(R.id.visibilitySwitch)
         userDoc.get().addOnSuccessListener { DocumentSnapshot ->
             if (!DocumentSnapshot.exists()) {
                 val preference = Preference(false)
@@ -72,6 +79,7 @@ class ProfileActivity : AppCompatActivity() {
             val intent = Intent(this, PreferenceFormActivity::class.java)
             startActivity(intent)
         }
+
 
         btnAddPhotos.setOnClickListener {
             selectImageFromGallery()
@@ -133,5 +141,9 @@ class ProfileActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to save image URL", Toast.LENGTH_SHORT).show()
             }
+        btnFindRoommates.setOnClickListener {
+            val intent = Intent(this, RoommateFinderActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
