@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,9 +28,19 @@ class RoommateFinderActivity : AppCompatActivity() {
 
         userAdapter = UserAdapter(userList) { selectedUser ->
             val intent = Intent(this, UserDetailActivity::class.java).apply {
+
+                putExtra("id", selectedUser.id)
                 putExtra("name", selectedUser.name)
                 putExtra("gender", selectedUser.gender)
                 putExtra("bio", selectedUser.bio)
+                putExtra("temperature", selectedUser.temperature)
+                putExtra("bedtime", selectedUser.bedtime)
+                putExtra("cleaniness", selectedUser.cleaniness.toString())
+                putExtra("oncampus", selectedUser.oncampus)
+                putExtra("location", selectedUser.location)
+                putExtra("llc", selectedUser.llc)
+                putExtra("maxrent", selectedUser.maxrent.toString())
+
             }
             startActivity(intent)
         }
@@ -62,6 +73,7 @@ class RoommateFinderActivity : AppCompatActivity() {
                 }
                 userAdapter.notifyDataSetChanged()
             }
+
             .addOnFailureListener { exception ->
                 Log.e("Error", "Error: ", exception)
             }

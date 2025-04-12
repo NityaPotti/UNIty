@@ -42,4 +42,74 @@
         android:textSize="16sp"
         android:paddingTop="8dp"
         android:text="Bio"/>
+
+    <TextView
+        android:id="@+id/Temp"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="Preferred temperature"/>
+
+    <TextView
+        android:id="@+id/Bed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="Bedtime"/>
+
+    <TextView
+        android:id="@+id/Clean"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="Cleaniness"/>
+
+    <TextView
+        android:id="@+id/OnCampus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="Is on campus?"/>
+
+    <TextView
+        android:id="@+id/Loc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="West or East"/>
+
+    <TextView
+        android:id="@+id/LLC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="LLC"/>
+
+    <TextView
+        android:id="@+id/Maxrent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="8dp"
+        android:text="Max rent"/>
+
+    <!-- Chat button -->
+    <Button
+        android:id="@+id/btnChat"
+        android:layout_marginTop="16dp"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button"
+        android:padding="12dp"
+        android:text="Open chat"
+        android:textColor="#ffffff"
+        android:textSize="18sp" />
+
 </LinearLayout>

@@ -13,7 +13,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.storage.FirebaseStorage
 import java.io.IOException
 import java.util.*
 
@@ -33,9 +32,6 @@ class ProfileActivity : AppCompatActivity() {
         val btnAddPhotos = findViewById<Button>(R.id.btnAddPhotos)
         val user = auth.currentUser
         val textView = findViewById<TextView>(R.id.user_details);
-        val visibilitySwitch = findViewById<com.google.android.material.materialswitch.MaterialSwitch>(R.id.visibilitySwitch)
-        val uid = auth.currentUser?.uid
-        val userDoc = db.collection("users").document(uid.toString())
         val btnFindRoommates = findViewById<Button>(R.id.btnFindRoommates)
 
 
@@ -52,10 +48,11 @@ class ProfileActivity : AppCompatActivity() {
 
         val uid = auth.currentUser?.uid
         val userDoc = db.collection("users").document(uid.toString())
-        val visibilitySwitch = findViewById<com.google.android.material.materialswitch.MaterialSwitch>(R.id.visibilitySwitch)
+        val visibilitySwitch =
+            findViewById<com.google.android.material.materialswitch.MaterialSwitch>(R.id.visibilitySwitch)
         userDoc.get().addOnSuccessListener { DocumentSnapshot ->
             if (!DocumentSnapshot.exists()) {
-                val preference = Preference(false)
+                val preference = Preference(uid.toString(), false)
                 db.collection("users")
                     .document(uid.toString())
                     .set(preference)
@@ -80,15 +77,21 @@ class ProfileActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        btnFindRoommates.setOnClickListener {
+            val intent = Intent(this, RoommateFinderActivity::class.java)
+            startActivity(intent)
+        }
 
         btnAddPhotos.setOnClickListener {
-            selectImageFromGallery()
+            //selectImageFromGallery()
         }
     }
-
+}
+    /*
     private fun selectImageFromGallery() {
         pickImageLauncher.launch("image/*")
     }
+
 
     private val pickImageLauncher =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
@@ -130,6 +133,7 @@ class ProfileActivity : AppCompatActivity() {
         }
     }
 
+
     private fun saveImageUrlToFirestore(userId: String, imageUrl: String) {
         val db = FirebaseFirestore.getInstance()
         val userImageRef = db.collection("users").document(userId)
@@ -141,9 +145,6 @@ class ProfileActivity : AppCompatActivity() {
             .addOnFailureListener {
                 Toast.makeText(this, "Failed to save image URL", Toast.LENGTH_SHORT).show()
             }
-        btnFindRoommates.setOnClickListener {
-            val intent = Intent(this, RoommateFinderActivity::class.java)
-            startActivity(intent)
-        }
+
     }
-}
+*/
