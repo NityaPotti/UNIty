@@ -65,21 +65,14 @@ class ChatActivity : AppCompatActivity() {
 
                 val currentTimestamp = Timestamp.now()
 
-                db.collection("users")
-                    .document(uid)
+                db.collection("chats")
+                    .document(concat(uid, otherId))
                     .collection("messages")
                     .add(Message(uid, otherId, text, false, currentTimestamp))
                     .addOnFailureListener { e: Exception ->
                         Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
                     }
 
-                db.collection("users")
-                    .document(otherId)
-                    .collection("messages")
-                    .add(Message(uid, otherId, text, false, currentTimestamp))
-                    .addOnFailureListener { e: Exception ->
-                        Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
-                    }
             }
             input.setText("")
 
@@ -91,33 +84,26 @@ class ChatActivity : AppCompatActivity() {
 
     }
 
+    private fun concat(a: String , b: String): String {
+        if (a < b) {
+            return a + "#" + b;
+        }
+        return b + "#" + a;
+    }
+
     private fun fetchMessages() {
         messageList.clear()
-        val query1 = db.collection("users")
-            .document(otherId.toString())
-            .collection("messages")
-            .whereEqualTo("sender", otherId)
 
-        val query2 = db.collection("users")
-            .document(otherId.toString())
-            .collection("messages")
-            .whereEqualTo("receiver", otherId)
+        db.collection("chats")
+            .document(concat(uid, otherId))
+            .collection("messages").get().addOnSuccessListener { sentDocs ->
 
-        query1.get().addOnSuccessListener { sentDocs ->
-            for (doc in sentDocs) {
-                val message = doc.toObject(Message::class.java)
-                messageList.add(message)
-            }
-
-            query2.get().addOnSuccessListener { receivedDocs ->
-                for (doc in receivedDocs) {
+                for (doc in sentDocs) {
                     val message = doc.toObject(Message::class.java)
                     messageList.add(message)
                 }
-
                 messageList.sortBy { it.timestamp }
                 messageAdapter.notifyDataSetChanged()
-            }
         }
 
     }
