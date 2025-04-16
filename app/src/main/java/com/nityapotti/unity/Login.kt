@@ -1,6 +1,5 @@
 package com.nityapotti.unity
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -121,9 +120,17 @@ class Login : AppCompatActivity() {
 
 
                     // navigating to the NavigationMenu activity
+                    // TODO: change intent back to NavigationMenu
+
+                    /*
                     val intent = Intent(this, NavigationMenu::class.java)
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+                    */
+
+                    val intent = Intent(this, ProfileActivity::class.java)
+                    startActivity(intent)
+
                     finish() // Closes the login activity so user can't go back
 // =======
 //                     // move to the next activity here!

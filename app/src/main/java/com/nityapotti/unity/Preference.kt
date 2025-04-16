@@ -1,6 +1,7 @@
 package com.nityapotti.unity
 
 data class Preference (
+    val id: String = "",
     val visible: Boolean = false,
     val name: String = "",
     val gender: String = "",

@@ -45,6 +45,9 @@
         <activity android:name=".UserDetailActivity"
             android:exported="false"/>
 
+        <activity android:name=".ChatActivity"
+            android:exported="false"/>
+
 
         <activity
             android:name=".MainActivity"

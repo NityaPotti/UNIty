@@ -47,7 +47,6 @@ class PreferenceFormActivity : AppCompatActivity() {
         btnSubmit = findViewById(R.id.btnSubmit)
         seekBarMaxRent = findViewById(R.id.seekBarMaxRent)
         editTextAbout = findViewById(R.id.textEditAbout)
-        val userDoc = db.collection("users").document(uid.toString())
         nameInput = findViewById(R.id.Name)
         btnBack = findViewById(R.id.btnBack)
 
@@ -95,8 +94,6 @@ class PreferenceFormActivity : AppCompatActivity() {
         chosen = rgBedtime.checkedRadioButtonId
         val bedtime = if (chosen != -1) findViewById<RadioButton>(chosen).text.toString() else ""
 
-        val bioText = bioInput.getText().toString()
-
         if (nameText.isEmpty() || gender.isEmpty() || temperature.isEmpty() || bedtime.isEmpty()) {
             Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
             return
@@ -114,12 +111,12 @@ class PreferenceFormActivity : AppCompatActivity() {
         chosen = rgLLC.checkedRadioButtonId
         val llc = if (chosen != -1) findViewById<RadioButton>(chosen).text.toString() else ""
 
-        val maxrent = seekBarCleaniness.progress
+        val maxrent = seekBarMaxRent.progress
 
         val about = editTextAbout.text.toString()
 
 
-        val preference = Preference(visibility, nameText, gender, temperature, bedtime, cleaniness, oncampus, location, llc, maxrent, about)
+        val preference = Preference(uid.toString(), visibility, nameText, gender, temperature, bedtime, cleaniness, oncampus, location, llc, maxrent, about)
 
         db.collection("users")
             .document(uid.toString())
