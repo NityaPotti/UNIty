@@ -31,12 +31,11 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ProfileActivity"
-                  android:exported="false"/>
+
                        
 
         <activity android:name=".PreferenceFormActivity"
-            android:exported="false"/>
+            android:exported="true"/>
 
 
         <activity android:name=".RoommateFinderActivity"
@@ -51,7 +50,7 @@
 
         <activity
             android:name=".MainActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -12,6 +12,7 @@ import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.nityapotti.unity.ui.fragments.RoommateFinderFragment
 import java.io.IOException
 import java.util.*
 
@@ -70,11 +71,20 @@ class ProfileFragment : Fragment() {
         }
 
         btnPreferenceForm.setOnClickListener {
+            Toast.makeText(requireContext(), "Opening preference form", Toast.LENGTH_SHORT).show()
             startActivity(Intent(requireContext(), PreferenceFormActivity::class.java))
         }
 
+
         btnFindRoommates.setOnClickListener {
-            startActivity(Intent(requireContext(), RoommateFinderActivity::class.java))
+            btnFindRoommates.setOnClickListener {
+                parentFragmentManager.beginTransaction()
+                    .replace(R.id.fl_wrapper, RoommateFinderFragment())
+                    .addToBackStack(null) // Optional: so user can press back
+                    .commit()
+            }
+
+
         }
 
         btnAddPhotos.setOnClickListener {

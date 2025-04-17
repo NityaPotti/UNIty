@@ -10,6 +10,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nityapotti.unity.ui.fragments.DmFragment
 import com.nityapotti.unity.ui.fragments.ExploreFragment
 import com.nityapotti.unity.ui.fragments.ProfileFragment
+import com.nityapotti.unity.ui.fragments.RoommateFinderFragment
 import com.nityapotti.unity.ui.fragments.SuggestedFragment
 
 class NavigationMenu : AppCompatActivity() {
@@ -18,16 +19,16 @@ class NavigationMenu : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_navigation_menu)
 
-        val exploreFragment = ExploreFragment()
+        val roommateFinderFragment = RoommateFinderFragment()
         val suggestedFragment = SuggestedFragment()
         val dmFragment = DmFragment()
         val profileFragment = ProfileFragment()
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        makeCurrentFragment(exploreFragment)
+        makeCurrentFragment(roommateFinderFragment)
 
         bottomNavigation.setOnItemSelectedListener {
             when (it.itemId) {
-                R.id.ic_explore -> makeCurrentFragment(exploreFragment)
+                R.id.ic_explore -> makeCurrentFragment(roommateFinderFragment)
                 R.id.ic_suggested -> makeCurrentFragment(suggestedFragment)
                 R.id.ic_dm -> makeCurrentFragment(dmFragment)
                 R.id.ic_profile -> makeCurrentFragment(profileFragment)

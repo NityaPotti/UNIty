@@ -1,34 +1,37 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
+import android.view.*
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.nityapotti.unity.Preference
+import com.nityapotti.unity.R
+import com.nityapotti.unity.UserAdapter
+import com.nityapotti.unity.UserDetailActivity
 
-
-class RoommateFinderActivity : AppCompatActivity() {
+class RoommateFinderFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var userAdapter: UserAdapter
     private val userList = mutableListOf<Preference>()
-    private lateinit var btnBack: Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.roommate_finder)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view = inflater.inflate(R.layout.fragment_roommate_finder, container, false)
 
-        recyclerView = findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         userAdapter = UserAdapter(userList) { selectedUser ->
-            val intent = Intent(this, UserDetailActivity::class.java).apply {
-
+            val intent = Intent(requireContext(), UserDetailActivity::class.java).apply {
                 putExtra("id", selectedUser.id)
                 putExtra("name", selectedUser.name)
                 putExtra("gender", selectedUser.gender)
@@ -40,20 +43,15 @@ class RoommateFinderActivity : AppCompatActivity() {
                 putExtra("location", selectedUser.location)
                 putExtra("llc", selectedUser.llc)
                 putExtra("maxrent", selectedUser.maxrent.toString())
-
             }
             startActivity(intent)
         }
 
         recyclerView.adapter = userAdapter
 
-        btnBack = findViewById(R.id.btnBack)
-
-        btnBack.setOnClickListener {
-            finish()
-        }
-
         fetchUsers()
+
+        return view
     }
 
     private fun fetchUsers() {
@@ -73,9 +71,9 @@ class RoommateFinderActivity : AppCompatActivity() {
                 }
                 userAdapter.notifyDataSetChanged()
             }
-
             .addOnFailureListener { exception ->
-                Log.e("Error", "Error: ", exception)
+                Log.e("Error", "Error fetching users: ", exception)
+                Toast.makeText(requireContext(), "Failed to fetch users", Toast.LENGTH_SHORT).show()
             }
     }
 }
