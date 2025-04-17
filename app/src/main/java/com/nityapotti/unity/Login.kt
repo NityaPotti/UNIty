@@ -128,8 +128,10 @@ class Login : AppCompatActivity() {
                     startActivity(intent)
                     */
 
-                    val intent = Intent(this, ProfileActivity::class.java)
+                    val intent = Intent(this, NavigationMenu::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     startActivity(intent)
+
 
                     finish() // Closes the login activity so user can't go back
 // =======

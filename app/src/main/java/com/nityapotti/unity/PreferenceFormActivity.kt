@@ -123,7 +123,8 @@ class PreferenceFormActivity : AppCompatActivity() {
             .set(preference)
             .addOnSuccessListener {
                 Toast.makeText(this, "Preferences saved successfully!", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this, ProfileActivity::class.java)
+                val intent = Intent(this, NavigationMenu::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(intent)
                 finish()
             }
