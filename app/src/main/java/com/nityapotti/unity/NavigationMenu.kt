@@ -21,7 +21,7 @@ class NavigationMenu : AppCompatActivity() {
 
         val roommateFinderFragment = RoommateFinderFragment()
         val suggestedFragment = SuggestedFragment()
-        val dmFragment = DmFragment()
+        val dmFragment = ChatFragment()
         val profileFragment = ProfileFragment()
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         makeCurrentFragment(roommateFinderFragment)

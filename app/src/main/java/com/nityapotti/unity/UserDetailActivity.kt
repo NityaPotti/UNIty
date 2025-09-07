@@ -8,8 +8,10 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentTransaction
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.nityapotti.unity.ui.fragments.RoommateFinderFragment
 
 class UserDetailActivity : AppCompatActivity() {
 
@@ -28,7 +30,7 @@ class UserDetailActivity : AppCompatActivity() {
         }
 
         btnChat.setOnClickListener {
-            val intent = Intent(this, ChatActivity::class.java)
+
             intent.putExtra("otherId", id)
             intent.putExtra("otherName", name)
             startActivity(intent)
