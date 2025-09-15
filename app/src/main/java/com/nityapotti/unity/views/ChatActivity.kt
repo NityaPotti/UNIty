@@ -109,10 +109,9 @@
 //    }
 //}
 
-package com.nityapotti.unity
+package com.nityapotti.unity.views
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -123,6 +122,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
+import com.nityapotti.unity.MessageAdapter
+import com.nityapotti.unity.R
+import com.nityapotti.unity.models.Message
 
 class ChatFragment : Fragment() {
 

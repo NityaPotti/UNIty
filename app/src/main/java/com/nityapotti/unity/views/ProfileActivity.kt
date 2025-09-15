@@ -1,4 +1,4 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.views
 
 import android.content.Context
 import android.content.Intent
@@ -12,6 +12,8 @@ import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.nityapotti.unity.R
+import com.nityapotti.unity.models.Preference
 import com.nityapotti.unity.ui.fragments.RoommateFinderFragment
 import java.io.IOException
 import java.util.*

@@ -1,4 +1,4 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.models
 
 import com.google.firebase.Timestamp
 

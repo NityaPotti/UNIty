@@ -1,4 +1,4 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.viewmodels
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

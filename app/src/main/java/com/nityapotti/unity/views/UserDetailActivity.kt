@@ -1,17 +1,10 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.views
 
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentTransaction
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.nityapotti.unity.ui.fragments.RoommateFinderFragment
+import com.nityapotti.unity.R
 
 class UserDetailActivity : AppCompatActivity() {
 

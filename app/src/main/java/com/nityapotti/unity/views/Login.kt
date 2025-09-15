@@ -1,8 +1,7 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.views
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +13,9 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.nityapotti.unity.databinding.ActivityLoginBinding
 import android.content.Intent
+import com.nityapotti.unity.ui.fragments.NavigationMenu
+import com.nityapotti.unity.R
+import com.nityapotti.unity.viewmodels.ForgotPasswordViewModel
 
 class Login : AppCompatActivity() {
 

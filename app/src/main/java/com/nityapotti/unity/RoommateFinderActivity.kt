@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.nityapotti.unity.Preference
+import com.nityapotti.unity.models.Preference
 import com.nityapotti.unity.R
 import com.nityapotti.unity.UserAdapter
-import com.nityapotti.unity.UserDetailActivity
+import com.nityapotti.unity.views.UserDetailActivity
 
 class RoommateFinderFragment : Fragment() {
 

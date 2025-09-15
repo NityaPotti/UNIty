@@ -1,4 +1,4 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.ui.fragments
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -7,11 +7,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.nityapotti.unity.ui.fragments.DmFragment
-import com.nityapotti.unity.ui.fragments.ExploreFragment
-import com.nityapotti.unity.ui.fragments.ProfileFragment
-import com.nityapotti.unity.ui.fragments.RoommateFinderFragment
-import com.nityapotti.unity.ui.fragments.SuggestedFragment
+import com.nityapotti.unity.R
+import com.nityapotti.unity.views.ChatFragment
 
 class NavigationMenu : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

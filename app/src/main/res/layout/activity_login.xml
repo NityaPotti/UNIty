@@ -10,7 +10,7 @@
     android:padding="40dp"
     android:layout_height="match_parent"
     android:background="#FFF4C2"
-    tools:context=".Login"
+    tools:context=".views.Login"
     >
 
     <LinearLayout

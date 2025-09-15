@@ -18,10 +18,10 @@
         android:theme="@style/Theme.UNIty"
         tools:targetApi="31">
         <activity
-            android:name=".NavigationMenu"
+            android:name=".ui.fragments.NavigationMenu"
             android:exported="false" />
         <activity
-            android:name=".Login"
+            android:name=".views.Login"
             android:exported="true"
             android:theme="@style/Theme.UNIty">
             <intent-filter>
@@ -34,14 +34,14 @@
 
                        
 
-        <activity android:name=".PreferenceFormActivity"
+        <activity android:name=".views.PreferenceFormActivity"
             android:exported="true"/>
 
 
         <activity android:name=".RoommateFinderActivity"
         android:exported="false"/>
 
-        <activity android:name=".UserDetailActivity"
+        <activity android:name=".views.UserDetailActivity"
             android:exported="false"/>
 
         <activity android:name=".ChatActivity"
