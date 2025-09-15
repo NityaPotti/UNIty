@@ -122,7 +122,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.Timestamp
-import com.nityapotti.unity.MessageAdapter
+import com.nityapotti.unity.Adapters.MessageAdapter
 import com.nityapotti.unity.R
 import com.nityapotti.unity.models.Message
 

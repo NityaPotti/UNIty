@@ -12,7 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.nityapotti.unity.models.Preference
 import com.nityapotti.unity.R
-import com.nityapotti.unity.UserAdapter
+import com.nityapotti.unity.Adapters.UserAdapter
 import com.nityapotti.unity.views.UserDetailActivity
 
 class RoommateFinderFragment : Fragment() {

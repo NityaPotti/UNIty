@@ -1,10 +1,11 @@
-package com.nityapotti.unity
+package com.nityapotti.unity.Adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.nityapotti.unity.R
 import com.nityapotti.unity.models.Preference
 
 class UserAdapter(private val userList: List<Preference>, private val onUserClick: (Preference) -> Unit) : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
