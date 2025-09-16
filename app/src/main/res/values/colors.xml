@@ -1,5 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+<!-- res/values/colors.xml -->
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Georgia Tech core -->
+    <color name="gt_gold">#B3A369</color>     <!-- Tech Gold -->
+    <color name="gt_buzz_gold">#EAAA00</color>
+    <color name="gt_navy">#003057</color>
+    <color name="gt_slate">#262626</color>
+    <color name="gt_cloud">#F5F5F7</color>
+    <color name="gt_white">#FFFFFF</color>
+
+    <!-- App semantic colors -->
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="surfaceCard">#FFFFFFFF</color>
+    <color name="surfaceBg">#F5F5F7</color>
+    <color name="black">#000000</color>
 </resources>

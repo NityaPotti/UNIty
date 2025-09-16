@@ -20,37 +20,40 @@
         <activity
             android:name=".ui.fragments.NavigationMenu"
             android:exported="false" />
+
         <activity
-            android:name=".views.Login"
+            android:name=".views.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.UNIty">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".views.RegisterActivity"
+            android:exported="true" />
 
-                       
+        <activity
+            android:name=".views.PreferenceFormActivity"
+            android:exported="true" />
 
-        <activity android:name=".views.PreferenceFormActivity"
-            android:exported="true"/>
+<!--        <activity-->
+<!--            android:name=".RoommateFinderActivity"-->
+<!--            android:exported="false" />-->
 
+        <activity
+            android:name=".views.UserDetailActivity"
+            android:exported="false" />
 
-        <activity android:name=".RoommateFinderActivity"
-        android:exported="false"/>
-
-        <activity android:name=".views.UserDetailActivity"
-            android:exported="false"/>
-
-        <activity android:name=".ChatActivity"
-            android:exported="false"/>
-
+<!--        <activity-->
+<!--            android:name=".ChatActivity"-->
+<!--            android:exported="false" />-->
 
         <activity
             android:name=".MainActivity"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

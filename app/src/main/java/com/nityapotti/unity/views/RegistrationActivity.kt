@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.nityapotti.unity.MainActivity
 import com.nityapotti.unity.R
 
 class RegisterActivity : AppCompatActivity() {
@@ -23,6 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         val etEmail = findViewById<EditText>(R.id.etEmail)
         val etPassword = findViewById<EditText>(R.id.etPassword)
         val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val tvLoginRedirect = findViewById<TextView>(R.id.tvLoginRedirect) // 👈 make sure ID matches your XML
 
         btnRegister.setOnClickListener {
             val email = etEmail.text.toString().trim()
@@ -35,6 +36,13 @@ class RegisterActivity : AppCompatActivity() {
 
             registerUser(email, password)
         }
+
+        // 👇 this part handles the "Already have an account? Log in"
+        tvLoginRedirect.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish() // optional: prevents user from coming back here with back button
+        }
     }
 
     private fun registerUser(email: String, password: String) {
@@ -42,8 +50,6 @@ class RegisterActivity : AppCompatActivity() {
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(this, "Registration Successful!", Toast.LENGTH_SHORT).show()
-                    startActivity(Intent(this, MainActivity::class.java))
-                    //Todo: later change to LoginActivity
                     val intent = Intent(this, PreferenceFormActivity::class.java)
                     startActivity(intent)
                     finish()
