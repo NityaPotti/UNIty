@@ -38,7 +38,7 @@ class RoommateFinderFragment : Fragment() {
                 putExtra("bio", selectedUser.bio)
                 putExtra("temperature", selectedUser.temperature)
                 putExtra("bedtime", selectedUser.bedtime)
-                putExtra("cleaniness", selectedUser.cleaniness.toString())
+                putExtra("cleaniness", selectedUser.cleanliness.toString())
                 putExtra("oncampus", selectedUser.oncampus)
                 putExtra("location", selectedUser.location)
                 putExtra("llc", selectedUser.llc)

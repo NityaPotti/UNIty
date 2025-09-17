@@ -69,7 +69,7 @@ class ProfileFragment : Fragment() {
 
         btnLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(requireContext(), Login::class.java))
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
 
         btnPreferenceForm.setOnClickListener {

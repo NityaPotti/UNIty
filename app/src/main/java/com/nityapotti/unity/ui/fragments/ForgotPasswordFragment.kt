@@ -1,4 +1,4 @@
-package com.nityapotti.unity.views
+package com.nityapotti.unity.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.nityapotti.unity.databinding.FragmentForgotPasswordBinding
 import com.nityapotti.unity.viewmodels.ForgotPasswordViewModel
 
-class ForgotPassword : BottomSheetDialogFragment() {
+class ForgotPasswordFragment : BottomSheetDialogFragment() {
     private lateinit var binding: FragmentForgotPasswordBinding
     private lateinit var forgotPasswordViewModel: ForgotPasswordViewModel
 

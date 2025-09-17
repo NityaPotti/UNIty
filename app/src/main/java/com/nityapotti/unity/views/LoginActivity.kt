@@ -15,9 +15,10 @@ import com.nityapotti.unity.databinding.ActivityLoginBinding
 import android.content.Intent
 import com.nityapotti.unity.ui.fragments.NavigationMenu
 import com.nityapotti.unity.R
+import com.nityapotti.unity.ui.fragments.ForgotPasswordFragment
 import com.nityapotti.unity.viewmodels.ForgotPasswordViewModel
 
-class Login : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() {
 
     // create an instance to store firebase auth.
     private lateinit var auth: FirebaseAuth
@@ -38,7 +39,7 @@ class Login : AppCompatActivity() {
         setContentView(binding.root)
         forgotPasswordViewModel = ViewModelProvider(this).get(ForgotPasswordViewModel::class.java)
         binding.forgotPassword.setOnClickListener{
-            ForgotPassword().show(supportFragmentManager, "forgotPasswordFragment")
+            ForgotPasswordFragment().show(supportFragmentManager, "forgotPasswordFragment")
         }
 
         forgotPasswordViewModel.forgotUserEmail.observe(this) {

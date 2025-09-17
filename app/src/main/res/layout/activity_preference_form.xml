@@ -1,312 +1,497 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/surfaceBg">
 
-
-<ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.Material3.ActionBar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="@color/gt_navy"
+            android:title="Your Preferences"
+            android:titleTextColor="@color/gt_white"
+            app:navigationIcon="?attr/homeAsUpIndicator"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Scrollable content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:padding="16dp"
+        android:clipToPadding="false">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#FFEB99"
-            android:gravity="center"
-            android:padding="0dp">
-        <!-- Go back button -->
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button"
-            android:padding="12dp"
-            android:text="Go back"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
+            android:baselineAligned="false">
 
-        <!-- Name -->
-        <EditText
-            android:id="@+id/Name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="What's your name?"
-            android:layout_marginTop="16dp"
-            android:gravity="top"
-            android:background="#f7ca4f"
-            android:padding="10dp"
-            android:maxLength="100"/>
-        <!-- Gender -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="What is your gender?"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#442222" />
-
-        <RadioGroup
-            android:id="@+id/rgGender"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rbMale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Male" />
-
-            <RadioButton
-                android:id="@+id/rbFemale"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Female" />
-
-            <RadioButton
-                android:id="@+id/rbOther"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Other" />
-        </RadioGroup>
-
-        <!-- Temperature -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:text="What's your preferable temperature?"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#442222" />
-
-        <RadioGroup
-            android:id="@+id/rgTemperature"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rbCooler"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Make it cooler (-459 to 60 F)" />
-
-            <RadioButton
-                android:id="@+id/rbTemperate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Make it somewhere in the middle (60 to 80 F)" />
-
-            <RadioButton
-                android:id="@+id/rbWarmer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Make it warmer (80 to 9999 F)" />
-        </RadioGroup>
-
-        <!-- Bedtime -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="When do you go to bed?"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#442222" />
-
-        <RadioGroup
-            android:id="@+id/rgBedtime"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <RadioButton
-                android:id="@+id/rbBedtime0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Before 10PM" />
-
-            <RadioButton
-                android:id="@+id/rbBedtime1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10PM - 11PM" />
-
-            <RadioButton
-                android:id="@+id/rbBedtime2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="11PM - 12AM" />
-
-            <RadioButton
-                android:id="@+id/rbBedtime3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="After 12AM" />
-        </RadioGroup>
-
-            <TextView
-                android:id="@+id/textView3"
+            <!-- Name -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Cleaniness"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardUseCompatPadding="true"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
 
-            <SeekBar
-                android:id="@+id/seekBarClean"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:max="10"
-                android:progress="5"
-                android:progressTint="#6750A3" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Where will you live"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <RadioGroup
-                android:id="@+id/rgOnCampus"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RadioButton
-                    android:id="@+id/rbOnCampus"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="On campus" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <RadioButton
-                    android:id="@+id/rbOffCampus"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Off Campus" />
-            </RadioGroup>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:hintEnabled="true"
+                        app:boxBackgroundMode = "outline"
+                        app:boxStrokeColor="@color/gt_gold">
 
-            <TextView
-                android:id="@+id/textView6"
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/Name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="What’s your name?"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Gender -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Preferred location"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
 
-            <RadioGroup
-                android:id="@+id/rgLocation"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RadioButton
-                    android:id="@+id/rbEast"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="East" />
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
-                <RadioButton
-                    android:id="@+id/rbWest"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="What is your gender?"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbMale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbFemale"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="Female"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbOther"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="Other"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Temperature -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="West" />
-            </RadioGroup>
+                    android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/LLCTextView"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Preferred room temperature"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgTemperature"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbCooler"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cooler (≤ 68°F)"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbTemperate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Temperate (68–74°F)"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbWarmer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Warmer (≥ 75°F)"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Bedtime -->
+            <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Living Learning Community"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
 
-            <RadioGroup
-                android:id="@+id/rgLLC"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <RadioButton
-                    android:id="@+id/rbNone"
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="None" />
+                    android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/rbExplore"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="When do you go to bed?"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgBedtime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="8dp"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbBedtime0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Before 10 PM"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbBedtime1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="10–11 PM"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbBedtime2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="11 PM – 12 AM"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbBedtime3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="After 12 AM"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Cleanliness -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Exprolre" />
+                    android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/rbGC"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cleanliness"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/seekBarClean"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="0"
+                        android:valueTo="10"
+                        android:value="5"
+                        app:labelBehavior="withinBounds"
+                        app:trackColorActive="@color/gt_gold"
+                        app:thumbTint="@color/gt_gold"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Location / LLC -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Grand Challenges" />
+                    android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/rbHP"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Where will you live?"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgOnCampus"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbOnCampus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="On campus"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbOffCampus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="Off campus"/>
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Preferred location"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:layout_marginTop="12dp"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbEast"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="East"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbWest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:text="West"/>
+                    </RadioGroup>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Living Learning Community"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:layout_marginTop="12dp"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgLLC"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbNone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="None"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbExplore"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Explore"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbGC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Grand Challenges"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbHP"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Honors Program"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbGlobalLeadership"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Global Leadership"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Max Rent -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Honors Program" />
+                    android:layout_height="wrap_content">
 
-                <RadioButton
-                    android:id="@+id/rbGlobalLeadership"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Maximum expected rent"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/seekBarMaxRent"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="0"
+                        android:valueTo="7"
+                        android:value="3"
+                        app:labelBehavior="withinBounds"
+                        app:trackColorActive="@color/gt_gold"
+                        app:thumbTint="@color/gt_gold"/>
+
+                    <TextView
+                        android:id="@+id/rentValue"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Maximum expected rent value: 1400"
+                        android:textColor="@color/gt_slate"
+                        android:layout_marginTop="6dp"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- About + Buttons -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Global Leadership" />
+                    android:layout_height="wrap_content">
 
-            </RadioGroup>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundMode="outline"
+                        app:boxStrokeColor="@color/gt_gold"
+                        android:hint="About you">
 
-            <TextView
-                android:id="@+id/textView9"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Maximum expected rent"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/textEditAbout"
+                            android:layout_width="match_parent"
+                            android:layout_height="120dp"
+                            android:gravity="start|top"
+                            android:inputType="textMultiLine"
+                            android:maxLines="6"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
-            <SeekBar
-                android:id="@+id/seekBarMaxRent"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:max="7"
-                android:progress="3" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="end"
+                        android:layout_marginTop="16dp">
 
-            <TextView
-                android:id="@+id/rentValue"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Maximum Expected rent value: 1400" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnBack"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:text="Skip for now"
+                            app:strokeColor="@color/gt_gold"
+                            android:textColor="@color/gt_navy"
+                            app:iconTint="@color/gt_navy"/>
 
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="About"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <EditText
-                android:id="@+id/textEditAbout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:gravity="start|top"
-                android:inputType="textMultiLine"
-                android:text="write something about you" />
-
-            <Button
-                android:id="@+id/btnSubmit"
-                android:layout_width="200dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="48dp"
-                android:background="@drawable/button"
-                android:padding="12dp"
-                android:text="Submit"
-                android:textColor="#ffffff"
-                android:textSize="18sp" />
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnSubmit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp"
+                            android:text="Submit"
+                            android:backgroundTint="@color/gt_gold"
+                            android:textColor="@color/colorOnPrimary"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-
-
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
