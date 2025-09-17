@@ -464,6 +464,7 @@
                             android:maxLines="6"/>
                     </com.google.android.material.textfield.TextInputLayout>
 
+                    <!-- Buttons -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -474,19 +475,21 @@
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnBack"
                             style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="48dp"
                             android:text="Skip for now"
                             app:strokeColor="@color/gt_gold"
                             android:textColor="@color/gt_navy"
-                            app:iconTint="@color/gt_navy"/>
+                            app:iconTint="@color/gt_navy" />
 
                         <com.google.android.material.button.MaterialButton
                             android:id="@+id/btnSubmit"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_height="48dp"
                             android:layout_marginStart="12dp"
                             android:text="Submit"
-                            android:backgroundTint="@color/gt_gold"
-                            android:textColor="@color/colorOnPrimary"/>
+                            app:backgroundTint="@color/gt_gold"
+                            android:textColor="@color/colorOnPrimary" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>

@@ -16,49 +16,51 @@ import com.nityapotti.unity.R
 import com.nityapotti.unity.models.Preference
 import com.nityapotti.unity.ui.fragments.RoommateFinderFragment
 import java.io.IOException
-import java.util.*
+import java.util.UUID
 
 class ProfileFragment : Fragment() {
 
     private lateinit var auth: FirebaseAuth
     private val db = FirebaseFirestore.getInstance()
 
-    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
-        uri?.let {
-            uploadImageToFirebase(it)
+    private val pickImageLauncher =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+            uri?.let { uploadImageToFirebase(it) }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
 
         auth = FirebaseAuth.getInstance()
+
         val btnLogOut = view.findViewById<Button>(R.id.btnLogOut)
         val btnPreferenceForm = view.findViewById<Button>(R.id.btnPreferenceForm)
         val btnAddPhotos = view.findViewById<Button>(R.id.btnAddPhotos)
-        val textView = view.findViewById<TextView>(R.id.user_details)
         val btnFindRoommates = view.findViewById<Button>(R.id.btnFindRoommates)
         val visibilitySwitch = view.findViewById<MaterialSwitch>(R.id.visibilitySwitch)
+        val userDetailsText = view.findViewById<TextView>(R.id.user_details)
 
         val user = auth.currentUser
         if (user == null) {
-            textView.text = "You are not logged in."
+            userDetailsText.text = "You are not logged in."
             btnLogOut.visibility = View.INVISIBLE
-            startActivity(Intent(requireContext(), RegisterActivity::class.java))
+            startLoginAndClearBackStack()
+            return view
         } else {
-            textView.text = user.email
+            userDetailsText.text = user.email
             btnLogOut.visibility = View.VISIBLE
         }
 
-        val uid = user?.uid
-        val userDoc = db.collection("users").document(uid.toString())
+        val uid = user.uid
+        val userDoc = db.collection("users").document(uid)
+
         userDoc.get().addOnSuccessListener { doc ->
             if (!doc.exists()) {
-                val preference = Preference(uid.toString(), false)
-                db.collection("users").document(uid.toString()).set(preference)
+                val preference = Preference(id = uid, visible = false)
+                userDoc.set(preference)
             }
             visibilitySwitch.isChecked = doc.getBoolean("visible") ?: false
         }
@@ -69,31 +71,33 @@ class ProfileFragment : Fragment() {
 
         btnLogOut.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
-            startActivity(Intent(requireContext(), LoginActivity::class.java))
+            // If you also use GoogleSignInClient, sign out there too.
+            startLoginAndClearBackStack()
         }
 
         btnPreferenceForm.setOnClickListener {
-            Toast.makeText(requireContext(), "Opening preference form", Toast.LENGTH_SHORT).show()
             startActivity(Intent(requireContext(), PreferenceFormActivity::class.java))
         }
 
-
         btnFindRoommates.setOnClickListener {
-            btnFindRoommates.setOnClickListener {
-                parentFragmentManager.beginTransaction()
-                    .replace(R.id.fl_wrapper, RoommateFinderFragment())
-                    .addToBackStack(null) // Optional: so user can press back
-                    .commit()
-            }
-
-
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fl_wrapper, RoommateFinderFragment())
+                .addToBackStack(null)
+                .commit()
         }
 
-        btnAddPhotos.setOnClickListener {
-            selectImageFromGallery()
-        }
+        btnAddPhotos.setOnClickListener { selectImageFromGallery() }
 
         return view
+    }
+
+    private fun startLoginAndClearBackStack() {
+        // Your login screen is LoginActivity
+        val intent = Intent(requireContext(), LoginActivity::class.java).apply {
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        }
+        startActivity(intent)
+        requireActivity().finish()
     }
 
     private fun selectImageFromGallery() {
@@ -105,8 +109,7 @@ class ProfileFragment : Fragment() {
         val fileName = "user_photos/$userId/${UUID.randomUUID()}.jpg"
         val fileRef = FirebaseStorage.getInstance().reference.child(fileName)
 
-        val imageBytes = imageToBlob(imageUri, requireContext())
-        if (imageBytes == null) {
+        val imageBytes = imageToBlob(imageUri, requireContext()) ?: run {
             Toast.makeText(requireContext(), "Failed to process image", Toast.LENGTH_SHORT).show()
             return
         }
@@ -122,20 +125,13 @@ class ProfileFragment : Fragment() {
             }
     }
 
-    private fun imageToBlob(imageUri: Uri, context: Context): ByteArray? {
-        return try {
-            context.contentResolver.openInputStream(imageUri)?.use { inputStream ->
-                inputStream.readBytes()
-            }
-        } catch (e: IOException) {
-            e.printStackTrace()
-            null
-        }
-    }
+    private fun imageToBlob(imageUri: Uri, context: Context): ByteArray? =
+        try { context.contentResolver.openInputStream(imageUri)?.use { it.readBytes() } }
+        catch (e: IOException) { e.printStackTrace(); null }
 
     private fun saveImageUrlToFirestore(userId: String, imageUrl: String) {
-        val userImageRef = db.collection("users").document(userId)
-        userImageRef.update("profileImage", imageUrl)
+        db.collection("users").document(userId)
+            .update("profileImage", imageUrl)
             .addOnSuccessListener {
                 Toast.makeText(requireContext(), "Image uploaded successfully", Toast.LENGTH_SHORT).show()
             }
