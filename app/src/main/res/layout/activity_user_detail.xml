@@ -14,7 +14,6 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
-        <!-- Profile photo with rounded shape -->
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/profileImage"
             android:layout_width="160dp"
@@ -25,7 +24,6 @@
             android:layout_marginTop="16dp"
             app:shapeAppearanceOverlay="@style/ShapeAppearance.MaterialComponents.SmallComponent" />
 
-        <!-- Name -->
         <TextView
             android:id="@+id/detailNameTextView"
             android:layout_width="wrap_content"
@@ -36,7 +34,6 @@
             android:layout_marginTop="12dp"
             android:textColor="#333" />
 
-        <!-- Gender -->
         <TextView
             android:id="@+id/detailGenderTextView"
             android:layout_width="wrap_content"
@@ -45,7 +42,6 @@
             android:textSize="16sp"
             android:textColor="@android:color/darker_gray" />
 
-        <!-- Bio in a card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,7 +60,6 @@
                 android:textColor="#444" />
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Key facts in a card -->
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,7 +138,6 @@
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Buttons row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
