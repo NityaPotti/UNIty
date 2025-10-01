@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/email_change"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:backgroundTint="#E91E63">
+
+    <EditText
+        android:id="@+id/email_change_input2"
+        android:layout_width="226dp"
+        android:layout_height="57dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter Password"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="285dp" />
+
+    <EditText
+        android:id="@+id/email_change_input3"
+        android:layout_width="226dp"
+        android:layout_height="57dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Re-enter Password"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="342dp" />
+
+    <TextView
+        android:id="@+id/change_email_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Password"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="251dp" />
+
+    <Button
+        android:id="@+id/save_email_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E91E63"
+        android:text="Change Email"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="399dp" />
+
+    <EditText
+        android:id="@+id/email_change_input"
+        android:layout_width="226dp"
+        android:layout_height="57dp"
+        android:ems="10"
+        android:inputType="text"
+        android:text="Enter email"
+        tools:layout_editor_absoluteX="92dp"
+        tools:layout_editor_absoluteY="119dp" />
+
+    <TextView
+        android:id="@+id/change_email_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change Email"
+        tools:layout_editor_absoluteX="162dp"
+        tools:layout_editor_absoluteY="89dp" />
+
+    <Button
+        android:id="@+id/save_email_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E91E63"
+        android:text="Change Email"
+        tools:layout_editor_absoluteX="137dp"
+        tools:layout_editor_absoluteY="176dp" />
+
+    <ToggleButton
+        android:id="@+id/privacy_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ToggleButton"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="523dp" />
+
+    <TextView
+        android:id="@+id/privacy_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Public"
+        tools:layout_editor_absoluteX="186dp"
+        tools:layout_editor_absoluteY="504dp" />
+
+    <Button
+        android:id="@+id/logout_button_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E91E63"
+        android:text="Log Out"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="638dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

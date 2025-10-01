@@ -2,6 +2,7 @@ package com.nityapotti.unity.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ImageView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,10 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.nityapotti.unity.MainActivity
 import com.nityapotti.unity.R
 import com.nityapotti.unity.views.LoginActivity
-
+import com.nityapotti.unity.ui.fragments.SettingsFragment
 class ProfileFragment : Fragment() {
 
     override fun onCreateView(
@@ -40,6 +42,11 @@ class ProfileFragment : Fragment() {
             }
             startActivity(intent)
             requireActivity().finishAffinity()
+        }
+
+        val settingsIcon = view.findViewById<ImageView>(R.id.topRightSettingsIcon)
+        settingsIcon?.setOnClickListener {
+            (activity as? MainActivity)?.openSettings()
         }
     }
 
