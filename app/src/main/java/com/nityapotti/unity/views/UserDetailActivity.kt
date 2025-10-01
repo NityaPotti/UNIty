@@ -6,6 +6,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.nityapotti.unity.R
 
+
 class UserDetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +67,14 @@ class UserDetailActivity : AppCompatActivity() {
         llcTextView.text = "LLC: " + llc
         maxTextView.text = "Max. rent: " + maxrent.toString()
         //TODO: I don't know the scale formula, should ask Kseniia
+
+        btnChat.setOnClickListener({ v ->
+            getSupportFragmentManager().beginTransaction()
+                .replace(android.R.id.content, ChatFragment())
+                .addToBackStack(null)
+                .commit()
+        })
+
     }
 
 }
