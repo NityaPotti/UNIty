@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
-import com.nityapotti.unity.ui.fragments.SettingsFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,11 +18,5 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-    }
-    fun openSettings() {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, SettingsFragment())
-            .addToBackStack(null)
-            .commit()
     }
 }

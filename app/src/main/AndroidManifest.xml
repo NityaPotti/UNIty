@@ -56,9 +56,9 @@
             android:exported="true" />
 
         <activity
-            android:name=".ui.fragments.SettingsFragment"
-            android:exported="true">
-        </activity>
+            android:name=".views.SettingsActivity"
+            android:exported="false"
+            />
     </application>
 
 </manifest>

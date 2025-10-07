@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.*
+import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.google.android.material.materialswitch.MaterialSwitch
@@ -42,6 +43,7 @@ class ProfileFragment : Fragment() {
         val btnFindRoommates = view.findViewById<Button>(R.id.btnFindRoommates)
         val visibilitySwitch = view.findViewById<MaterialSwitch>(R.id.visibilitySwitch)
         val userDetailsText = view.findViewById<TextView>(R.id.user_details)
+        val settingsButton = view.findViewById<ImageView>(R.id.topRightSettingsIcon)
 
         val user = auth.currentUser
         if (user == null) {
@@ -84,6 +86,10 @@ class ProfileFragment : Fragment() {
                 .replace(R.id.fl_wrapper, RoommateFinderFragment())
                 .addToBackStack(null)
                 .commit()
+        }
+
+        settingsButton.setOnClickListener {
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
 
         btnAddPhotos.setOnClickListener { selectImageFromGallery() }
