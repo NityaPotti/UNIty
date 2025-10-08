@@ -17,10 +17,11 @@
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:backgroundTint="@color/gt_navy"
-            android:title="Your Preferences"
-            android:titleTextColor="@color/gt_white"
+            android:background="@color/gt_navy"
+            app:title="Your Preferences"
+            app:titleTextColor="@color/gt_white"
             app:navigationIcon="?attr/homeAsUpIndicator"
+            app:navigationIconTint="@color/gt_white"
             app:layout_scrollFlags="scroll|enterAlways"/>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -44,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
                 app:cardCornerRadius="20dp"
-                app:cardUseCompatPadding="true"
+                app:cardUseCompatPadding="false"
                 app:strokeColor="@color/gt_gold"
                 app:strokeWidth="1dp">
 
@@ -157,19 +158,25 @@
                             android:id="@+id/rbCooler"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Cooler (≤ 68°F)"/>
+                            android:text="Cooler ≤ 68°F"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/Cool"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cooler 68 - 70°F"/>
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/rbTemperate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Temperate (68–74°F)"/>
+                            android:text="Temperate 70 – 72°F"/>
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/rbWarmer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Warmer (≥ 75°F)"/>
+                            android:text="Warmer ≥ 72°F"/>
                     </RadioGroup>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -184,49 +191,49 @@
                 app:strokeWidth="1dp">
 
                 <LinearLayout
-                    android:padding="16dp"
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="When do you go to bed?"
-                        android:textStyle="bold"
                         android:textColor="@color/gt_slate"
-                        android:textSize="16sp"/>
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
                     <RadioGroup
                         android:id="@+id/rgBedtime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="8dp"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:paddingTop="8dp">
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/rbBedtime0"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Before 10 PM"/>
+                            android:text="Before 10 PM" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/rbBedtime1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="10–11 PM"/>
+                            android:text="10–11 PM" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/rbBedtime2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="11 PM – 12 AM"/>
+                            android:text="11 PM – 12 AM" />
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
                             android:id="@+id/rbBedtime3"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="After 12 AM"/>
+                            android:text="After 12 AM" />
                     </RadioGroup>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -259,16 +266,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:valueFrom="0"
-                        android:valueTo="10"
-                        android:value="5"
+                        android:valueTo="20"
+                        android:value="10"
+                        app:tickVisible="false"
                         app:labelBehavior="withinBounds"
                         app:trackColorActive="@color/gt_gold"
                         app:thumbTint="@color/gt_gold"/>
+
+                    <TextView
+                        android:id="@+id/tvClean"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Cleanliness: "
+                        android:textColor="@color/gt_slate"
+                        android:layout_marginTop="6dp"/>
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <!-- Location / LLC -->
             <com.google.android.material.card.MaterialCardView
+                android:id="@+id/LocationLLC"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="12dp"
@@ -312,12 +330,14 @@
                     </RadioGroup>
 
                     <TextView
+                        android:id="@+id/tvLocation"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Preferred location"
                         android:textStyle="bold"
                         android:textColor="@color/gt_slate"
                         android:layout_marginTop="12dp"
+                        android:visibility="gone"
                         android:textSize="16sp"/>
 
                     <RadioGroup
@@ -325,6 +345,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:paddingTop="8dp">
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -342,12 +363,14 @@
                     </RadioGroup>
 
                     <TextView
+                        android:id="@+id/tvLLC"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Living Learning Community"
                         android:textStyle="bold"
                         android:textColor="@color/gt_slate"
                         android:layout_marginTop="12dp"
+                        android:visibility="gone"
                         android:textSize="16sp"/>
 
                     <RadioGroup
@@ -355,6 +378,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
+                        android:visibility="gone"
                         android:paddingTop="8dp">
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -419,7 +443,9 @@
                         android:layout_height="wrap_content"
                         android:valueFrom="0"
                         android:valueTo="7"
-                        android:value="3"
+                        android:value="1"
+                        android:stepSize=".01"
+                        app:tickVisible="false"
                         app:labelBehavior="withinBounds"
                         app:trackColorActive="@color/gt_gold"
                         app:thumbTint="@color/gt_gold"/>
@@ -428,19 +454,46 @@
                         android:id="@+id/rentValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maximum expected rent value: 1400"
+                        android:text="Maximum expected rent: $1400"
                         android:textColor="@color/gt_slate"
                         android:layout_marginTop="6dp"/>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp"
+                >
+                <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/visibilitySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:layout_margin="16dp"
+                    app:thumbTint="@color/gt_white"
+                    app:trackTint="@color/gt_navy"
+                    android:layout_gravity="right"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Profile Visible"
+                    android:textStyle="bold"
+                    android:textSize="16sp"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="28dp"/>
+
+            </com.google.android.material.card.MaterialCardView>
             <!-- About + Buttons -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:cardCornerRadius="20dp"
                 app:strokeColor="@color/gt_gold"
-                app:strokeWidth="1dp">
+                app:strokeWidth="1dp"
+                android:layout_marginTop="10dp">
 
                 <LinearLayout
                     android:padding="16dp"

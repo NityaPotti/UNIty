@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.nityapotti.unity.MainActivity
+import com.nityapotti.unity.PreferenceFormActivity
 import com.nityapotti.unity.R
 import com.nityapotti.unity.views.LoginActivity
 import com.nityapotti.unity.views.SettingsActivity
@@ -21,7 +22,15 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        val myButton = view.findViewById<Button>(R.id.btnPreferenceForm)
+        myButton.setOnClickListener {
+            val intent = Intent(requireActivity(), PreferenceFormActivity::class.java)
+            startActivity(intent)
+
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
