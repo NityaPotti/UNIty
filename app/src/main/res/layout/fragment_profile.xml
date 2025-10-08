@@ -1,73 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_profile"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#FFEB99"
-    android:gravity="center"
-    android:padding="24dp">
-
-    <!-- Email address -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="24dp"
-        android:fontFamily="monospace"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#FFEB99"
         android:gravity="center"
-        android:id="@+id/user_details"
-        android:textColor="#000000"
-        android:textSize="48sp"
-        android:textStyle="bold" />
+        android:padding="24dp">
 
-    <!-- Log out Button -->
-    <Button
-        android:id="@+id/btnLogOut"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button"
-        android:padding="12dp"
-        android:text="Log out"
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
+        <!-- Email address -->
 
-    <com.google.android.material.materialswitch.MaterialSwitch
-        android:id="@+id/visibilitySwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Is your profile public?" />
+        <!-- Log out Button -->
 
-    <!-- Preference form Button -->
-    <Button
-        android:id="@+id/btnPreferenceForm"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button"
-        android:padding="12dp"
-        android:text="Change preferences"
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
+        <Button
+            android:id="@+id/btnLogOut"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button"
+            android:padding="12dp"
+            android:text="Log out"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
 
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/visibilitySwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Is your profile public?" />
 
-    <Button
-        android:id="@+id/btnAddPhotos"
-        android:layout_width="292dp"
-        android:layout_height="wrap_content"
-        android:text="Add photos" />
-
-    <!-- Find roommates Button -->
-    <Button
-        android:id="@+id/btnFindRoommates"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button"
-        android:padding="12dp"
-        android:text="Find roommates"
-        android:textColor="#ffffff"
-        android:textSize="18sp" />
+        <!-- Preference form Button -->
+        <Button
+            android:id="@+id/btnPreferenceForm"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button"
+            android:padding="12dp"
+            android:text="Change preferences"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
 
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnAddPhotos"
+            android:layout_width="292dp"
+            android:layout_height="wrap_content"
+            android:text="Add photos" />
+
+        <!-- Find roommates Button -->
+        <Button
+            android:id="@+id/btnFindRoommates"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button"
+            android:padding="12dp"
+            android:text="Find roommates"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/user_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/topRightSettingsIcon"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/settings_icon"
+        android:contentDescription="settings_icon"
+        android:layout_gravity="top|end"
+        android:layout_margin="16dp"/>
+</FrameLayout>

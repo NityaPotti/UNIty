@@ -55,6 +55,10 @@
             android:name=".MainActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".views.SettingsActivity"
+            android:exported="false"
+            />
         <activity android:name=".PreferenceFormActivity" />
     </application>
 
