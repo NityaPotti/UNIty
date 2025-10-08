@@ -4,10 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.nityapotti.unity.R
 
-class SettingsActivity : AppCompatActivity(){
+class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_settings)
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.fragment_settings)
         }
     }
-}
