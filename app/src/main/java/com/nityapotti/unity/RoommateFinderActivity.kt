@@ -13,7 +13,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.nityapotti.unity.models.Preference
 import com.nityapotti.unity.R
 import com.nityapotti.unity.Adapters.UserAdapter
-import com.nityapotti.unity.views.UserDetailActivity
+//import com.nityapotti.unity.views.UserDetailActivity
 
 class RoommateFinderFragment : Fragment() {
 
@@ -31,20 +31,20 @@ class RoommateFinderFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         userAdapter = UserAdapter(userList) { selectedUser ->
-            val intent = Intent(requireContext(), UserDetailActivity::class.java).apply {
-                putExtra("id", selectedUser.id)
-                putExtra("name", selectedUser.name)
-                putExtra("gender", selectedUser.gender)
-                putExtra("bio", selectedUser.bio)
-                putExtra("temperature", selectedUser.temperature)
-                putExtra("bedtime", selectedUser.bedtime)
-                putExtra("cleaniness", selectedUser.cleanliness.toString())
-                putExtra("oncampus", selectedUser.oncampus)
-                putExtra("location", selectedUser.location)
-                putExtra("llc", selectedUser.llc)
-                putExtra("maxrent", selectedUser.maxrent.toString())
-            }
-            startActivity(intent)
+//            val intent = Intent(requireContext(), UserDetailActivity::class.java).apply {
+//                putExtra("id", selectedUser.id)
+//                putExtra("name", selectedUser.name)
+//                putExtra("gender", selectedUser.gender)
+//                putExtra("bio", selectedUser.bio)
+//                putExtra("temperature", selectedUser.temperature)
+//                putExtra("bedtime", selectedUser.bedtime)
+//                putExtra("cleaniness", selectedUser.cleanliness.toString())
+//                putExtra("oncampus", selectedUser.oncampus)
+//                putExtra("location", selectedUser.location)
+//                putExtra("llc", selectedUser.llc)
+//                putExtra("maxrent", selectedUser.maxrent.toString())
+//            }
+            //startActivity(intent)
         }
 
         recyclerView.adapter = userAdapter
