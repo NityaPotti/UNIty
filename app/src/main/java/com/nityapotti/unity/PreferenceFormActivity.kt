@@ -8,7 +8,6 @@ import com.google.android.material.slider.Slider
 import android.view.View
 import android.widget.RadioGroup
 import android.os.Bundle
-import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,7 +21,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.android.material.textfield.TextInputEditText
-
+import com.nityapotti.unity.models.Preference
 
 class PreferenceFormActivity : AppCompatActivity() {
 
@@ -50,19 +49,19 @@ class PreferenceFormActivity : AppCompatActivity() {
             insets
         }
 
+        val goldColor = ContextCompat.getColor(this, R.color.gt_gold)
+        val navyColor = ContextCompat.getColor(this, R.color.gt_navy)
+
         toolbar = findViewById(R.id.topAppBar)
         setSupportActionBar(toolbar)
 
         toolbar.setNavigationOnClickListener {
-            val intent = Intent(this,  ProfileFragment::class.java)
-            startActivity(intent)
-
+            finish()
         }
         toolbar.setTitleTextColor(getColor(R.color.gt_white))
         toolbar.navigationIcon?.setTint(getColor(R.color.gt_white))
 
         val db = FirebaseFirestore.getInstance()
-
         val user = FirebaseAuth.getInstance().currentUser
 
         val visibleSwitch = findViewById<MaterialSwitch>(R.id.visibilitySwitch)
@@ -80,77 +79,139 @@ class PreferenceFormActivity : AppCompatActivity() {
         val locationText = findViewById<TextView>(R.id.tvLocation)
         val llcText = findViewById<TextView>(R.id.tvLLC)
 
+        val uid = user?.uid
 
-        cleanSlider.addOnChangeListener { _, value, _ ->
-            cleanVal = value
+        // -------------------- Defensive loadUserData --------------------
+        fun loadUserData() {
+            if (uid == null) return
+            db.collection("userPref").document(uid)
+                .get()
+                .addOnSuccessListener { document ->
+                    if (document.exists()) {
+                        val user = document.toObject(Preference::class.java)
+                        user?.let {
+                            try {
+                                nameText.setText(it.name ?: "")
+
+                                when (it.gender) {
+                                    "Male" -> genderGroup.check(R.id.rbMale)
+                                    "Female" -> genderGroup.check(R.id.rbFemale)
+                                    "Other" -> genderGroup.check(R.id.rbOther)
+                                    else -> genderGroup.clearCheck()
+                                }
+
+                                when (it.temperature) {
+                                    "Cooler ≤ 68°F" -> tempGroup.check(R.id.rbCooler)
+                                    "Cool 68 - 70°F" -> tempGroup.check(R.id.Cool)
+                                    "Temperate 70 – 72°F" -> tempGroup.check(R.id.rbTemperate)
+                                    "Warmer ≥ 72°F" -> tempGroup.check(R.id.rbWarmer)
+                                    else -> tempGroup.clearCheck()
+                                }
+
+                                when (it.bedtime) {
+                                    "Before 10 PM" -> bedGroup.check(R.id.rbBedtime0)
+                                    "10-11 PM" -> bedGroup.check(R.id.rbBedtime1)
+                                    "11 PM - 12 AM" -> bedGroup.check(R.id.rbBedtime2)
+                                    "After 12 AM" -> bedGroup.check(R.id.rbBedtime3)
+                                    else -> bedGroup.clearCheck()
+                                }
+
+                                cleanSlider.value = (document.getLong("cleanliness")?.toFloat() ?: 0f)
+
+                                when (it.oncampus) {
+                                    "On campus" -> onCampusGroup.check(R.id.rbOnCampus)
+                                    "Off campus" -> onCampusGroup.check(R.id.rbOffCampus)
+                                    else -> onCampusGroup.clearCheck()
+
+                                }
+
+                                when (it.location) {
+                                    "East" -> onCampusGroup.check(R.id.rbEast)
+                                    "West" -> onCampusGroup.check(R.id.rbWest)
+                                    "Either" -> onCampusGroup.check(R.id.rbEither)
+                                    else -> onCampusGroup.clearCheck()
+                                }
+
+                                when (it.llc) {
+                                    "None" -> onCampusGroup.check(R.id.rbNone)
+                                    "Explore" -> onCampusGroup.check(R.id.rbExplore)
+                                    "Grand Challenges" -> onCampusGroup.check(R.id.rbGC)
+                                    "Global Leadership" -> onCampusGroup.check(R.id.rbGlobalLeadership)
+                                    "Honors Program" -> onCampusGroup.check(R.id.rbHP)
+                                    else -> onCampusGroup.clearCheck()
+                                }
+
+                                val rentGet = ((document.getLong("maxrent")?.toFloat() ?: 0f) / 1400)
+
+                                rentSlider.value = rentGet
+
+                                val visible = document.getBoolean("visible") ?: false
+                                visibleSwitch.isChecked = visible
+
+                                visibleSwitch.post {
+                                    visibleSwitch.trackTintList =
+                                        ColorStateList.valueOf(if (visibleSwitch.isChecked) goldColor else navyColor)
+                                }
+
+                                bioText.setText(it.bio ?: "")
+
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                                Toast.makeText(this, "Error parsing user data", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to load data", Toast.LENGTH_SHORT).show()
+                }
         }
 
+        loadUserData()
+
+        // -------------------- Sliders --------------------
+        cleanSlider.addOnChangeListener { _, value, _ -> cleanVal = value }
         rentSlider.addOnChangeListener { _, value, _ ->
-            rentVal = (1400 * value.toInt())  - ((1400 * value.toInt()) % 50)
+            rentVal = (1400 * value.toInt()) - ((1400 * value.toInt()) % 50)
         }
 
-        visibleSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                visibilityVal = true
+        // -------------------- RadioGroups --------------------
+        fun safeSetListener(group: RadioGroup, setter: (RadioButton) -> Unit) {
+            group.setOnCheckedChangeListener { _, checkedId ->
+                if (checkedId != -1) {
+                    val button = findViewById<RadioButton>(checkedId)
+                    setter(button)
+                }
             }
-            else {
-                visibilityVal = false
-            }
         }
 
-        genderGroup.setOnCheckedChangeListener { _, checkedId ->
-            val genderChecked = findViewById<RadioButton>(checkedId)
-            genderVal = genderChecked.text.toString()
-        }
-
-        tempGroup.setOnCheckedChangeListener { _, checkedId ->
-            val tempChecked = findViewById<RadioButton>(checkedId)
-            tempVal = tempChecked.text.toString()
-        }
-
-        bedGroup.setOnCheckedChangeListener { _, checkedId ->
-            val bedChecked = findViewById<RadioButton>(checkedId)
-            bedVal = bedChecked.text.toString()
-        }
-
-        llcGroup.setOnCheckedChangeListener { _, checkedId ->
-            val llcChecked = findViewById<RadioButton>(checkedId)
-            llcVal = llcChecked.text.toString()
-        }
-
-        eastOrWestGroup.setOnCheckedChangeListener { _, checkedId ->
-            val eastOrWestChecked = findViewById<RadioButton>(checkedId)
-            eastOrWestVal = eastOrWestChecked.text.toString()
-        }
+        safeSetListener(genderGroup) { genderVal = it.text.toString() }
+        safeSetListener(tempGroup) { tempVal = it.text.toString() }
+        safeSetListener(bedGroup) { bedVal = it.text.toString() }
+        safeSetListener(llcGroup) { llcVal = it.text.toString() }
+        safeSetListener(eastOrWestGroup) { eastOrWestVal = it.text.toString() }
 
         onCampusGroup.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.rbOnCampus -> {
+            if (checkedId != -1) {
+                val button = findViewById<RadioButton>(checkedId)
+                onCampusVal = button.text.toString() == "On campus"
+
+                if (onCampusVal) {
                     eastOrWestGroup.visibility = View.VISIBLE
                     llcGroup.visibility = View.VISIBLE
                     locationText.visibility = View.VISIBLE
                     llcText.visibility = View.VISIBLE
-                }
-
-                R.id.rbOffCampus -> {
+                } else {
                     eastOrWestGroup.visibility = View.GONE
                     llcGroup.visibility = View.GONE
                     locationText.visibility = View.GONE
                     llcText.visibility = View.GONE
                 }
             }
-            val onCampusChecked = findViewById<RadioButton>(checkedId)
-
-            if (onCampusChecked.text.toString() == "On campus") {
-                onCampusVal = true
-            }
-            else if (onCampusChecked.text.toString() == "Off campus") {
-                onCampusVal = false
-            }
         }
 
+        // -------------------- Slider Labels --------------------
         val cleanTextView = findViewById<TextView>(R.id.tvClean)
-
         cleanSlider.setLabelFormatter { value: Float ->
             when (value.toInt()) {
                 in 0..4 -> "Super messy"
@@ -158,67 +219,48 @@ class PreferenceFormActivity : AppCompatActivity() {
                 in 9..12 -> "Not dirty, not spotless"
                 in 13..16 -> "tidy"
                 in 17..20 -> "spotless"
-
-                else -> "${value.toInt()}"
+                else -> value.toInt().toString()
             }
         }
-
-        cleanSlider.addOnChangeListener { slider, value, fromUser ->
+        cleanSlider.addOnChangeListener { _, value, _ ->
             val cleanText = when (value.toInt()) {
                 in 0..4 -> "Cleanliness: Super messy"
                 in 5..8 -> "Cleanliness: A little messy"
                 in 9..12 -> "Cleanliness: Not dirty, not spotless"
                 in 13..16 -> "Cleanliness: Tidy"
                 in 17..20 -> "Cleanliness: Spotless"
-
                 else -> value.toInt().toString()
             }
             cleanTextView.text = cleanText
         }
 
         val rentText = findViewById<TextView>(R.id.rentValue)
-
         rentSlider.setLabelFormatter { value ->
             var rent = (value * 1400).toInt()
-            val remainder = rent % 50
-            rent -= remainder
+            rent -= rent % 50
             rent.toString()
         }
-
-        rentSlider.addOnChangeListener { slider, value, fromUser ->
+        rentSlider.addOnChangeListener { _, value, _ ->
             var rent = (value * 1400).toInt()
-            val remainder = rent % 50
-            rent -= remainder
-            rent.toString()
-            val rentvlaue = "Maximum expected rent: \$$rent"
-
-            rentText.text = rentvlaue
+            rent -= rent % 50
+            rentText.text = "Maximum expected rent: \$$rent"
         }
 
-        val goldColor = ContextCompat.getColor(this, R.color.gt_gold)
-        val navyColor = ContextCompat.getColor(this, R.color.gt_navy)
-
+        // -------------------- Switch --------------------
         visibleSwitch.setOnCheckedChangeListener { _, isChecked ->
-            if (isChecked) {
-                visibleSwitch.trackTintList = ColorStateList.valueOf(goldColor)
-            } else {
-                visibleSwitch.trackTintList = ColorStateList.valueOf(navyColor)
-            }
+            visibilityVal = isChecked
+            visibleSwitch.trackTintList =
+                ColorStateList.valueOf(if (isChecked) goldColor else navyColor)
         }
 
-        val skipButton = findViewById<MaterialButton>(R.id.btnBack)
-        skipButton.setOnClickListener {
-            val intent = Intent(this, ProfileFragment::class.java)
-            startActivity(intent)
+        // -------------------- Buttons --------------------
+        findViewById<MaterialButton>(R.id.btnBack).setOnClickListener {
+            finish()
         }
 
-        val submitButton = findViewById<MaterialButton>(R.id.btnSubmit)
-
-        submitButton.setOnClickListener {
+        findViewById<MaterialButton>(R.id.btnSubmit).setOnClickListener {
             val nameVal = nameText.text.toString()
             val bioVal = bioText.text.toString()
-            val uid = user?.uid
-
             if (uid != null) {
                 val userPref = hashMapOf(
                     "id" to uid,
@@ -228,38 +270,22 @@ class PreferenceFormActivity : AppCompatActivity() {
                     "temperature" to tempVal,
                     "bedtime" to bedVal,
                     "cleanliness" to cleanVal,
-                    "oncampus" to onCampusVal,
+                    "oncampus" to (if (onCampusVal) "On campus" else "Off campus"),
                     "location" to eastOrWestVal,
                     "llc" to llcVal,
                     "maxrent" to rentVal,
                     "bio" to bioVal
                 )
-                db. collection("userPref").document(uid)
+                db.collection("userPref").document(uid)
                     .set(userPref)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Preferences Saved!", Toast.LENGTH_SHORT).show()
-                        val intent = Intent(this,  ProfileFragment::class.java)
-                        startActivity(intent)
+                        finish()
                     }
-                    .addOnFailureListener { e ->
+                    .addOnFailureListener {
                         Toast.makeText(this, "Something Went Wrong", Toast.LENGTH_SHORT).show()
                     }
             }
-
-
         }
-
-
-
     }
-
-    }
-
-
-
-
-
-
-
-
-
+}

@@ -58,5 +58,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth:23.0.0")
     implementation("com.google.android.material:material:1.1.0")
     implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("androidx.cardview:cardview:1.0.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.10.0")
 
 }
