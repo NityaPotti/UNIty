@@ -37,23 +37,23 @@ class ProfileFragment : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
-        val btnLogOut = view.findViewById<Button>(R.id.btnLogOut)
+//        val btnLogOut = view.findViewById<Button>(R.id.logout_button_settings)
         val btnPreferenceForm = view.findViewById<Button>(R.id.btnPreferenceForm)
         val btnAddPhotos = view.findViewById<Button>(R.id.btnAddPhotos)
-        val btnFindRoommates = view.findViewById<Button>(R.id.btnFindRoommates)
-        val visibilitySwitch = view.findViewById<MaterialSwitch>(R.id.visibilitySwitch)
+//        val btnFindRoommates = view.findViewById<Button>(R.id.btnFindRoommates)
+//        val visibilitySwitch = view.findViewById<MaterialSwitch>(R.id.visibilitySwitch)
         val userDetailsText = view.findViewById<TextView>(R.id.user_details)
         val settingsButton = view.findViewById<ImageView>(R.id.topRightSettingsIcon)
 
         val user = auth.currentUser
         if (user == null) {
             userDetailsText.text = "You are not logged in."
-            btnLogOut.visibility = View.INVISIBLE
+//            btnLogOut.visibility = View.INVISIBLE
             startLoginAndClearBackStack()
             return view
         } else {
             userDetailsText.text = user.email
-            btnLogOut.visibility = View.VISIBLE
+//            btnLogOut.visibility = View.VISIBLE
         }
 
         val uid = user.uid
@@ -64,29 +64,29 @@ class ProfileFragment : Fragment() {
                 val preference = Preference(id = uid, visible = false)
                 userDoc.set(preference)
             }
-            visibilitySwitch.isChecked = doc.getBoolean("visible") ?: false
+//            visibilitySwitch.isChecked = doc.getBoolean("visible") ?: false
         }
 
-        visibilitySwitch.setOnCheckedChangeListener { _, isChecked ->
-            userDoc.update("visible", isChecked)
-        }
+//        visibilitySwitch.setOnCheckedChangeListener { _, isChecked ->
+//            userDoc.update("visible", isChecked)
+//        }
 
-        btnLogOut.setOnClickListener {
-            FirebaseAuth.getInstance().signOut()
-            // If you also use GoogleSignInClient, sign out there too.
-            startLoginAndClearBackStack()
-        }
+//        btnLogOut.setOnClickListener {
+//            FirebaseAuth.getInstance().signOut()
+//            // If you also use GoogleSignInClient, sign out there too.
+//            startLoginAndClearBackStack()
+//        }
 
         btnPreferenceForm.setOnClickListener {
             startActivity(Intent(requireContext(), PreferenceFormActivity::class.java))
         }
 
-        btnFindRoommates.setOnClickListener {
-            parentFragmentManager.beginTransaction()
-                .replace(R.id.fl_wrapper, RoommateFinderFragment())
-                .addToBackStack(null)
-                .commit()
-        }
+//        btnFindRoommates.setOnClickListener {
+//            parentFragmentManager.beginTransaction()
+//                .replace(R.id.fl_wrapper, RoommateFinderFragment())
+//                .addToBackStack(null)
+//                .commit()
+//        }
 
         settingsButton.setOnClickListener {
             startActivity(Intent(requireContext(), SettingsActivity::class.java))
