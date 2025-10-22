@@ -42,23 +42,23 @@ class ProfileFragment : Fragment() {
         }
 
 
-        val btnLogOut = view.findViewById<Button>(R.id.btnLogOut)
+//        val btnLogOut = view.findViewById<Button>(R.id.btnLogOut)
         // If the ID doesn’t exist in fragment_profile.xml, this will be null → check your XML.
-        btnLogOut?.setOnClickListener {
-            Toast.makeText(requireContext(), "Logging out…", Toast.LENGTH_SHORT).show()
-
-            FirebaseAuth.getInstance().signOut()
-
-            val intent = Intent(requireContext(), LoginActivity::class.java).apply {
-                addFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK or
-                            Intent.FLAG_ACTIVITY_CLEAR_TASK or
-                            Intent.FLAG_ACTIVITY_CLEAR_TOP
-                )
-            }
-            startActivity(intent)
-            requireActivity().finishAffinity()
-        }
+//        btnLogOut?.setOnClickListener {
+//            Toast.makeText(requireContext(), "Logging out…", Toast.LENGTH_SHORT).show()
+//
+//            FirebaseAuth.getInstance().signOut()
+//
+//            val intent = Intent(requireContext(), LoginActivity::class.java).apply {
+//                addFlags(
+//                    Intent.FLAG_ACTIVITY_NEW_TASK or
+//                            Intent.FLAG_ACTIVITY_CLEAR_TASK or
+//                            Intent.FLAG_ACTIVITY_CLEAR_TOP
+//                )
+//            }
+//            startActivity(intent)
+//            requireActivity().finishAffinity()
+//        }
     }
 
     companion object {

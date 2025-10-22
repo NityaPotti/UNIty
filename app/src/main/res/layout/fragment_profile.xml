@@ -16,23 +16,6 @@
 
         <!-- Log out Button -->
 
-        <Button
-            android:id="@+id/btnLogOut"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/button"
-            android:padding="12dp"
-            android:text="Log out"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/visibilitySwitch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Is your profile public?" />
-
         <!-- Preference form Button -->
         <Button
             android:id="@+id/btnPreferenceForm"
@@ -53,16 +36,6 @@
             android:text="Add photos" />
 
         <!-- Find roommates Button -->
-        <Button
-            android:id="@+id/btnFindRoommates"
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="@drawable/button"
-            android:padding="12dp"
-            android:text="Find roommates"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/user_details"
