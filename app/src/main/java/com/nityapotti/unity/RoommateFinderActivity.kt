@@ -4,9 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.util.Log
 import android.view.*
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -30,7 +28,6 @@ import android.widget.Button
 import android.widget.Switch
 
 //import com.nityapotti.unity.views.UserDetailActivity
-
 class RoommateFinderFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
