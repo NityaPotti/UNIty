@@ -3,6 +3,14 @@
     <style name="Base.Theme.UNIty" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/gt_slate</item>
+        <item name="colorOnPrimary">@color/gt_white</item>
+        <item name="colorSecondary">@color/gt_gold</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.MyApp.Button.Circle" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
     </style>
 
     <style name="Theme.UNIty" parent="Base.Theme.UNIty" />

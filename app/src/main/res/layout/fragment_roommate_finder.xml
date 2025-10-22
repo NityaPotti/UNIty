@@ -1,35 +1,881 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFEB99"
-    android:gravity="center"
-    android:padding="24dp">
+    android:background="@color/surfaceBg">
 
-    <LinearLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/searchCard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="50dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="50dp"
+        app:strokeColor="@color/gt_gold"
+        app:strokeWidth="2dp">
 
-        <!-- Go back button -->
-        <Button
-            android:id="@+id/btnBack"
-            android:layout_width="110dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button"
-            android:padding="12dp"
-            android:text="Go back"
-            android:textColor="#ffffff"
-            android:textSize="18sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+            android:layout_height="match_parent">
 
-</ScrollView>
+            <ImageView
+                android:id="@+id/iconLeft"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_search"
+                app:tint="@color/gt_slate"/>
+
+            <EditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                android:hint="Search..."
+                android:textColor="@color/gt_slate"
+                android:textColorHint="@color/gt_slate"
+                android:textSize="18sp"
+                android:gravity="center_vertical|start"
+                android:background="@null"
+                android:inputType="text"
+                android:includeFontPadding="false"/>
+
+            <ImageButton
+                android:id="@+id/clearBtn"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center_vertical|end"
+                android:layout_marginEnd="20dp"
+                android:background="@color/surfaceBg"
+                android:src="@drawable/x_icon"
+                app:tint="@color/gt_slate"
+                android:adjustViewBounds="true"
+                android:scaleType="centerInside"/>
+        </FrameLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:padding="16dp"
+        android:clipToPadding="false">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/filterCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="50dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:animateLayoutChanges="true">
+
+                    <LinearLayout
+                        android:id="@+id/filterHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_gravity="center_vertical"
+                        android:weightSum="1">
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Filter"
+                            android:layout_weight="1"
+                            android:textSize="19sp"
+                            android:textColor="@color/gt_slate"/>
+
+                        <ImageButton
+                            android:id="@+id/filterBtn"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:background="@color/surfaceBg"
+                            android:src="@drawable/chevron_down"
+                            app:tint="@color/gt_slate"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerInside"/>
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/line"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/gt_navy"
+                        android:visibility="gone"/>
+
+                    <LinearLayout
+                        android:id="@+id/clearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        android:layout_marginHorizontal="0dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="left">
+
+                            <com.google.android.material.materialswitch.MaterialSwitch
+                                android:id="@+id/filterSwitch"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scaleY=".75"
+                                android:scaleX=".75"
+                                app:thumbTint="@color/gt_white"
+                                app:trackTint="@color/gt_navy"
+                                android:layout_gravity="left"
+                                android:paddingBottom="10dp"
+                                android:layout_marginStart="-6dp"/>
+
+                            <TextView
+                                android:id="@+id/switchText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Macthes one"
+                                android:textSize="16sp"
+                                android:layout_gravity="left"
+                                android:paddingTop="8dp"/>
+                            
+                        </LinearLayout>
+                        
+                        <LinearLayout
+                            android:id="@+id/marginLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="right"
+                            android:layout_marginLeft="117.6dp">
+
+                        <TextView
+                            android:id="@+id/filterText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Clear filter"
+                            android:textColor="@color/gt_slate"
+                            android:textSize="15sp"
+                            android:layout_marginRight="5dp"
+                            android:paddingTop="8dp"/>
+
+                        <ImageButton
+                            android:id="@+id/filterClear"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_gravity="center_vertical|end"
+                            android:background="@color/surfaceBg"
+                            android:src="@drawable/x_icon"
+                            app:tint="@color/gt_slate"
+                            android:adjustViewBounds="true"
+                            android:layout_marginTop="5dp"
+                            android:scaleType="centerInside"
+                            />
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:visibility="gone"
+                        android:id="@+id/filterVis">
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/genderPref"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="8dp"
+                                android:layout_marginTop="12dp"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Gender:"
+                                    android:textColor="@color/gt_slate"
+                                    android:layout_weight="0" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <GridLayout
+                                android:id="@+id/genderLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="2dp"
+                                android:layout_marginHorizontal="10dp"
+                                android:columnCount="3"
+                                android:rowCount="1">
+
+                                <CheckBox
+                                    android:id="@+id/cbMalePref"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="Male"
+                                    app:buttonTint="@color/gt_gold" />
+
+                                <CheckBox
+                                    android:id="@+id/cbFemalePref"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="Female"
+                                    app:buttonTint="@color/gt_gold" />
+
+                                <CheckBox
+                                    android:id="@+id/cbOtherPref"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:text="Other"
+                                    app:buttonTint="@color/gt_gold" />
+                            </GridLayout>
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/tempPref"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginVertical="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Prefered temperature:"
+                                android:textColor="@color/gt_slate"
+                                android:layout_weight="0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <GridLayout
+                            android:id="@+id/tempLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:columnCount="2"
+                            android:rowCount="2">
+
+                            <CheckBox
+                                android:id="@+id/cbCoolerPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Before 10 PM"
+                                android:layout_columnWeight="1"
+                                android:layout_column="0"
+                                android:layout_row="0"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbCoolPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="10 – 11 PM"
+                                android:layout_columnWeight="1"
+                                android:layout_column="1"
+                                android:layout_row="0"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbTemperatePref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="11 PM – 12 AM"
+                                android:layout_columnWeight="1"
+                                android:layout_column="0"
+                                android:layout_row="1"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbWarmPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="After 12 AM"
+                                android:layout_columnWeight="1"
+                                android:layout_column="1"
+                                android:layout_row="1"
+                                app:buttonTint="@color/gt_gold"/>
+                        </GridLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/bedPref"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginVertical="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Goes to bed:"
+                                android:textColor="@color/gt_slate"
+                                android:layout_weight="0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <GridLayout
+                            android:id="@+id/bedLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:columnCount="2"
+                            android:rowCount="2">
+
+                            <CheckBox
+                                android:id="@+id/cbbfr10"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cooler ≤ 68°F"
+                                android:layout_columnWeight="1"
+                                android:layout_column="0"
+                                android:layout_row="0"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cb1011"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cool 68 - 70°F"
+                                android:layout_columnWeight="1"
+                                android:layout_column="1"
+                                android:layout_row="0"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cb1112"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Temperate 70 – 72°F"
+                                android:layout_columnWeight="1"
+                                android:layout_column="0"
+                                android:layout_row="1"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbaft12"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Warmer ≥ 72°F"
+                                android:layout_columnWeight="1"
+                                android:layout_column="1"
+                                android:layout_row="1"
+                                app:buttonTint="@color/gt_gold"/>
+                        </GridLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cleanPref"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginVertical="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Cleanliness:"
+                                android:textColor="@color/gt_slate"
+                                android:layout_weight="0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical">
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <GridLayout
+                            android:id="@+id/cleanLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:columnCount="2"
+                            android:rowCount="3">
+
+                            <CheckBox
+                                android:id="@+id/cbSuperMessyPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Super messy"
+                                android:layout_columnWeight="1"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbMessyPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="A little messy"
+                                android:layout_columnWeight="1"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbMidCleanPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Not messy, not spotless"
+                                android:layout_columnWeight="1"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbTidyPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Tidy"
+                                android:layout_columnWeight="1"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbSpotlessPref"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Spotless"
+                                android:layout_columnWeight="1"
+                                app:buttonTint="@color/gt_gold"/>
+                        </GridLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/onCampusPref"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="8dp"
+                            android:layout_marginVertical="12dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="On or off campus:"
+                                android:textColor="@color/gt_slate"
+                                android:layout_weight="0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                        <GridLayout
+                            android:id="@+id/onCampusLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginHorizontal="10dp"
+                            android:columnCount="2"
+                            android:rowCount="1">
+
+                            <CheckBox
+                                android:id="@+id/cbOnCampus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="On-campus"
+                                android:layout_columnWeight="1"
+                                android:layout_column="0"
+                                app:buttonTint="@color/gt_gold"/>
+
+                            <CheckBox
+                                android:id="@+id/cbOffCampus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Off-campus"
+                                android:layout_columnWeight="1"
+                                android:layout_column="1"
+                                app:buttonTint="@color/gt_gold"/>
+                        </GridLayout>
+                    </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/eastOrWestPref"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            app:cardCornerRadius="10dp"
+                            app:strokeColor="@color/gt_gold"
+                            app:strokeWidth="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="8dp"
+                                android:layout_marginVertical="12dp"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="East or West:"
+                                    android:textColor="@color/gt_slate"
+                                    android:layout_weight="0" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1" />
+                            </LinearLayout>
+
+                            <GridLayout
+                                android:id="@+id/eastOrWestLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="35dp"
+                                android:layout_marginHorizontal="10dp"
+                                android:columnCount="3"
+                                android:rowCount="1">
+
+                                <CheckBox
+                                    android:id="@+id/cbEast"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="East"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="0"
+                                    app:buttonTint="@color/gt_gold"/>
+
+                                <CheckBox
+                                    android:id="@+id/cbWest"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="West"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="1"
+                                    app:buttonTint="@color/gt_gold"/>
+
+                                <CheckBox
+                                    android:id="@+id/cbEither"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Either"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="2"
+                                    app:buttonTint="@color/gt_gold"/>
+                            </GridLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/llcPref"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            app:cardCornerRadius="10dp"
+                            app:strokeColor="@color/gt_gold"
+                            app:strokeWidth="2dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="8dp"
+                                android:layout_marginVertical="12dp"
+                                android:orientation="horizontal"
+                                android:gravity="center_vertical"
+                                android:weightSum="1">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="LLC:"
+                                    android:textColor="@color/gt_slate"
+                                    android:layout_weight="0" />
+
+                                <View
+                                    android:layout_width="0dp"
+                                    android:layout_height="1dp"
+                                    android:layout_weight="1" />
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:gravity="center_vertical">
+                                </LinearLayout>
+                            </LinearLayout>
+
+                            <GridLayout
+                                android:id="@+id/llcLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginTop="35dp"
+                                android:layout_marginHorizontal="10dp"
+                                android:columnCount="2"
+                                android:rowCount="3">
+
+                                <CheckBox
+                                    android:id="@+id/None"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="None"
+                                    android:layout_columnWeight="1"
+                                    app:buttonTint="@color/gt_gold"/>
+
+                                <CheckBox
+                                    android:id="@+id/cbEpxlore"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Explore"
+                                    android:layout_columnWeight="1"
+                                    app:buttonTint="@color/gt_gold"/>
+
+                                <CheckBox
+                                    android:id="@+id/cbGrandChallenges"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Grand Challenges"
+                                    android:layout_columnWeight="1"
+                                    app:buttonTint="@color/gt_gold"/>
+
+                                <CheckBox
+                                    android:id="@+id/cbHonors"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Honors Program"
+                                    android:layout_columnWeight="1"
+                                    app:buttonTint="@color/gt_gold"/>
+
+                                <CheckBox
+                                    android:id="@+id/cbGlobalLeadership"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Global Leadership"
+                                    android:layout_columnWeight="1"
+                                    app:buttonTint="@color/gt_gold"/>
+                            </GridLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/rentPref"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="12dp"
+                            android:layout_marginHorizontal="8dp"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:weightSum="1">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Max expected rent:"
+                                android:textColor="@color/gt_slate"
+                                android:layout_weight="0" />
+
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1" />
+                        </LinearLayout>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/rentPrefInput"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginHorizontal="10dp"
+                        android:layout_marginBottom="14dp"
+                        app:cardCornerRadius="10dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="2dp">
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginHorizontal="5dp"
+                            android:textColor="@color/gt_slate"
+                            android:hint="Enter a number..."
+                            android:textColorHint="@color/gt_slate"
+                            android:textSize="14sp"
+                            />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:gravity="center">
+
+                            <Button
+                                android:id="@+id/applyBtn"
+                                android:layout_width="120dp"
+                                android:layout_height="50dp"
+                                android:backgroundTint="@color/gt_gold"
+                                android:textColor="@color/gt_white"
+                                android:text="Apply Filter"
+                                android:textSize="12sp"
+                                android:layout_marginVertical="10dp" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:cardBackgroundColor="@color/gt_navy"
+                app:strokeWidth="2dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    android:clipToPadding="false"
+                    app:background="@color/gt_white"/>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>
