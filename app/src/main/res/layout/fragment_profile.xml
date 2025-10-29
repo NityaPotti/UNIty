@@ -12,6 +12,11 @@
         android:gravity="center"
         android:padding="24dp">
 
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"/>
+
         <!-- Email address -->
 
         <!-- Log out Button -->
