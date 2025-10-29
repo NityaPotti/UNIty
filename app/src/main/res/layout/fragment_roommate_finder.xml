@@ -819,6 +819,7 @@
                         app:strokeWidth="2dp">
 
                         <EditText
+                            android:id="@+id/rentEdit"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginHorizontal="5dp"

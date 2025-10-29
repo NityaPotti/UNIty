@@ -26,6 +26,7 @@ import android.widget.TextView
 import com.google.android.material.materialswitch.MaterialSwitch
 import android.widget.Button
 import android.widget.Switch
+import com.nityapotti.unity.views.UserDetailActivity
 
 //import com.nityapotti.unity.views.UserDetailActivity
 class RoommateFinderFragment : Fragment() {
@@ -47,6 +48,30 @@ class RoommateFinderFragment : Fragment() {
 
         val searchBar = view.findViewById<EditText>(R.id.searchEditText)
         val searchCard = view.findViewById<MaterialCardView>(R.id.searchCard)
+
+        recyclerView = view.findViewById(R.id.recyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        userAdapter = UserAdapter(filteredList) { selectedUser ->
+            val intent = Intent(requireContext(), UserDetailActivity::class.java).apply {
+                putExtra("id", selectedUser.id)
+                putExtra("name", selectedUser.name)
+                putExtra("gender", selectedUser.gender)
+                putExtra("bio", selectedUser.bio)
+                putExtra("temperature", selectedUser.temperature)
+                putExtra("bedtime", selectedUser.bedtime)
+                putExtra("cleanliness", selectedUser.cleanliness.toString())
+                putExtra("oncampus", selectedUser.oncampus)
+                putExtra("location", selectedUser.location)
+                putExtra("llc", selectedUser.llc)
+                putExtra("maxrent", selectedUser.maxrent.toString())
+            }
+            startActivity(intent)
+        }
+
+        recyclerView.adapter = userAdapter
+        recyclerView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gt_white))
+
 
         searchBar.setOnFocusChangeListener { view: View, hasFocus: Boolean ->
             val color = if (hasFocus)
@@ -83,6 +108,15 @@ class RoommateFinderFragment : Fragment() {
         val onCampusPref = view.findViewById<GridLayout>(R.id.onCampusLayout)
         val eastOrWestPref = view.findViewById<GridLayout>(R.id.eastOrWestLayout)
         val llcPref = view.findViewById<GridLayout>(R.id.llcLayout)
+
+        val clearBtn = view.findViewById<ImageButton>(R.id.clearBtn)
+        val clearFilter = view.findViewById<ImageButton>(R.id.filterClear)
+        val rentEdit = view.findViewById<EditText>(R.id.rentEdit)
+        val userCard = view.findViewById<MaterialCardView>(R.id.recyclerUser)
+
+        clearBtn.setOnClickListener {
+            searchEdit.setText("")
+        }
 
         val checkboxLayouts = listOf(
             genderPref,
@@ -129,6 +163,18 @@ class RoommateFinderFragment : Fragment() {
             updateFilteredList(searchEdit.text.toString())
         }
 
+        clearFilter.setOnClickListener {
+            for (layout in checkboxLayouts) {
+                for (i in 0 until layout.childCount) {
+                    val view = layout.getChildAt(i)
+                    if (view is CheckBox && view.isChecked) {
+                        view.setChecked(false)
+                    }
+                }
+            }
+            rentEdit.setText("")
+        }
+
         var isExpanded = false
 
         filterBtn.setOnClickListener {
@@ -152,29 +198,6 @@ class RoommateFinderFragment : Fragment() {
 
         }
 
-        recyclerView = view.findViewById(R.id.recyclerView)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        userAdapter = UserAdapter(filteredList) { selectedUser ->
-//            val intent = Intent(requireContext(), UserDetailActivity::class.java).apply {
-//                putExtra("id", selectedUser.id)
-//                putExtra("name", selectedUser.name)
-//                putExtra("gender", selectedUser.gender)
-//                putExtra("bio", selectedUser.bio)
-//                putExtra("temperature", selectedUser.temperature)
-//                putExtra("bedtime", selectedUser.bedtime)
-//                putExtra("cleaniness", selectedUser.cleanliness.toString())
-//                putExtra("oncampus", selectedUser.oncampus)
-//                putExtra("location", selectedUser.location)
-//                putExtra("llc", selectedUser.llc)
-//                putExtra("maxrent", selectedUser.maxrent.toString())
-//            }
-//            startActivity(intent)
-        }
-
-        recyclerView.adapter = userAdapter
-        recyclerView.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.gt_white))
-
         fetchUsers()
 
         return view
@@ -187,7 +210,7 @@ class RoommateFinderFragment : Fragment() {
         filteredList.addAll(userList.filter { user ->
             if (filterSwitch.isChecked) {
                 val matchesCheckbox =
-                    if (checkedCheckBoxes.isEmpty()) true else checkedCheckBoxes.any { checkbox ->
+                    if (checkedCheckBoxes.isEmpty()) true else checkedCheckBoxes.all { checkbox ->
                         val checked = checkbox.text.toString()
                         val cleanText = when (user.cleanliness) {
                             in 0..4 -> "Cleanliness: Super messy"
@@ -213,7 +236,7 @@ class RoommateFinderFragment : Fragment() {
 
             else {
                 val matchesCheckbox =
-                    if (checkedCheckBoxes.isEmpty()) true else checkedCheckBoxes.all { checkbox ->
+                    if (checkedCheckBoxes.isEmpty()) true else checkedCheckBoxes.any { checkbox ->
                         val checked = checkbox.text.toString()
                         val cleanText = when (user.cleanliness) {
                             in 0..4 -> "Cleanliness: Super messy"
