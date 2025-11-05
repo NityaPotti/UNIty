@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="preference_fields">
+        <item>None</item>
+        <item>Gender</item>
+        <item>Major</item>
+        <item>Year</item>
+        <item>Extroversion</item>
+        <item>How often you go out</item>
+        <item>Noise Level</item>
+        <item>Temperature</item>
+        <item>Bed time</item>
+        <item>Wakeup time</item>
+        <item>Cleanliness</item>
+        <item>On or off campus</item>
+        <item>East or West</item>
+        <item>LLC</item>
+        <item>Lease Length</item>
+        <item>Max rent (Range)</item>
+        <item>Number of roommates</item>
+        <item>OK with guests</item>
+        <item>Sharing</item>
+    </string-array>
+</resources>

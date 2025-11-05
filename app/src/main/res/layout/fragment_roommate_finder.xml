@@ -281,6 +281,130 @@
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            app:cardCornerRadius="10dp"
+                            app:strokeColor="@color/gt_gold"
+                            app:strokeWidth="2dp">
+
+                            <LinearLayout
+                                android:padding="16dp"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Year"
+                                    android:textColor="@color/gt_slate" />
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginBottom="15dp"
+                                    android:layout_marginTop="15dp"
+                                    app:cardCornerRadius="20dp"
+                                    app:strokeColor="@color/gt_gold"
+                                    app:strokeWidth="1dp">
+
+                                    <Spinner
+                                        android:id="@+id/yearSearch"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:entries="@array/year"
+                                        android:textColor="@color/gt_slate"
+                                        android:padding="8dp"
+                                        android:layout_marginVertical="5dp"
+                                        android:layout_marginLeft="-6dp"/>
+
+                                </com.google.android.material.card.MaterialCardView>
+
+                                <com.google.android.material.card.MaterialCardView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    app:cardCornerRadius="20dp"
+                                    app:strokeColor="@color/gt_gold"
+                                    app:strokeWidth="1dp">
+
+                                    <androidx.recyclerview.widget.RecyclerView
+                                        android:id="@+id/yearRecycler"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:padding="10dp"
+                                        android:clipToPadding="false"
+                                        app:background="@color/gt_white"/>
+                                </com.google.android.material.card.MaterialCardView>
+
+                            </LinearLayout>
+
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            app:cardCornerRadius="10dp"
+                            app:strokeColor="@color/gt_gold"
+                            app:strokeWidth="2dp">
+
+                        <LinearLayout
+                            android:padding="16dp"
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Major"
+                                android:textColor="@color/gt_slate" />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="15dp"
+                                android:layout_marginTop="15dp"
+                                app:cardCornerRadius="20dp"
+                                app:strokeColor="@color/gt_gold"
+                                app:strokeWidth="1dp">
+
+                                <Spinner
+                                    android:id="@+id/majorSearch"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:entries="@array/gt_majors"
+                                    android:textColor="@color/gt_slate"
+                                    android:padding="8dp"
+                                    android:layout_marginVertical="5dp"
+                                    android:layout_marginLeft="-6dp"/>
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="match_parent"
+                                android:layout_height="0dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="20dp"
+                                app:strokeColor="@color/gt_gold"
+                                app:strokeWidth="1dp">
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/majorRecycler"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="10dp"
+                                    android:clipToPadding="false"
+                                    app:background="@color/gt_white"/>
+                            </com.google.android.material.card.MaterialCardView>
+
+                        </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/tempPref"
                         android:layout_width="match_parent"

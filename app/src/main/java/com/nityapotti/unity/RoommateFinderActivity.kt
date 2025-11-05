@@ -17,6 +17,8 @@ import android.widget.EditText
 import com.google.android.material.card.MaterialCardView
 import androidx.core.content.ContextCompat
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import androidx.core.widget.addTextChangedListener
@@ -25,7 +27,10 @@ import android.widget.GridLayout
 import android.widget.TextView
 import com.google.android.material.materialswitch.MaterialSwitch
 import android.widget.Button
+import android.widget.Spinner
 import android.widget.Switch
+import com.nityapotti.unity.adapters.DealBreakerAdapter
+import com.nityapotti.unity.adapters.YearAdapter
 import com.nityapotti.unity.views.UserDetailActivity
 
 //import com.nityapotti.unity.views.UserDetailActivity
@@ -37,6 +42,9 @@ class RoommateFinderFragment : Fragment() {
     private val userList = mutableListOf<Preference>()
     private val filteredList = mutableListOf<Preference>()
     private val checkedCheckBoxes = mutableListOf<CheckBox>()
+    private var yearVal: String = ""
+    private var yearspinnerInitialized = false
+    private var majorspinnerInitialized = false
 
 
     @SuppressLint("MissingInflatedId")
@@ -113,6 +121,91 @@ class RoommateFinderFragment : Fragment() {
         val clearFilter = view.findViewById<ImageButton>(R.id.filterClear)
         val rentEdit = view.findViewById<EditText>(R.id.rentEdit)
         val userCard = view.findViewById<MaterialCardView>(R.id.recyclerUser)
+
+        val yearSpinnerSearch = view.findViewById<Spinner>(R.id.yearSearch)
+        val yearList = mutableListOf<String>()
+        val yearAdapter = YearAdapter(yearList)
+        val yearRecycler = view.findViewById<RecyclerView>(R.id.yearRecycler)
+        yearRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        yearRecycler.adapter = yearAdapter
+
+        if (yearAdapter.getItems().isEmpty()) {
+            yearRecycler.visibility = View.GONE
+        }
+        else {
+            yearRecycler.visibility = View.VISIBLE
+        }
+
+        yearSpinnerSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (!yearspinnerInitialized) {
+                    yearspinnerInitialized = true
+                    return
+                }
+
+                val selectedItem = parent.getItemAtPosition(position) as String
+                android.util.Log.d("YearSpinner", "Selected: $selectedItem, Current list size: ${yearList.size}")
+
+                if (selectedItem == "Select a Year") {
+                    yearAdapter.clear()
+                    yearRecycler.visibility = View.GONE
+                } else {
+                    if (!yearList.contains(selectedItem)) {
+                        yearAdapter.addItem(selectedItem)
+                        yearRecycler.post {
+                            yearRecycler.requestLayout()
+                        }
+                        android.util.Log.d("YearSpinner", "Added item. New list size: ${yearList.size}")
+                        android.util.Log.d("YearSpinner", "Adapter item count: ${yearAdapter.itemCount}")
+                        android.util.Log.d("YearSpinner", "RecyclerView visibility: ${yearRecycler.visibility}")
+                        android.util.Log.d("YearSpinner", "RecyclerView height: ${yearRecycler.height}")
+                        android.util.Log.d("YearSpinner", "RecyclerView child count: ${yearRecycler.childCount}")
+                    }
+
+                    yearRecycler.visibility = View.VISIBLE  // Move this here
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
+
+        val majorSearch = view.findViewById<Spinner>(R.id.majorSearch)
+
+        val majorList = mutableListOf<String>()
+        val majorAdapter = DealBreakerAdapter(majorList)
+        val majorRecycler = view.findViewById<RecyclerView>(R.id.majorRecycler)
+        majorRecycler.layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        majorRecycler.adapter = majorAdapter
+
+        if (majorAdapter.getItems().isEmpty()) {
+            majorRecycler.visibility = View.GONE
+        }
+        else {
+            majorRecycler.visibility = View.VISIBLE
+        }
+
+        majorSearch.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                if (!majorspinnerInitialized) {
+                    majorspinnerInitialized = true
+                    return
+                }
+
+                val selectedItem = parent.getItemAtPosition(position) as String
+
+
+                    if (!majorList.contains(selectedItem)) {
+                        majorAdapter.addItem(selectedItem)
+                    }
+                    majorRecycler.visibility = View.VISIBLE  // Move this here
+                }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
+        }
 
         clearBtn.setOnClickListener {
             searchEdit.setText("")
