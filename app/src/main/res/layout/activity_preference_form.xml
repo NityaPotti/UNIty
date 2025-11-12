@@ -129,7 +129,259 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Temperature -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Year"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="1dp">
+
+                        <Spinner
+                            android:id="@+id/year"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/year"
+                            android:textColor="@color/gt_slate"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_marginLeft="-6dp"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:cardUseCompatPadding="false"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Major"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_marginTop="15dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="1dp">
+
+                        <Spinner
+                            android:id="@+id/major"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:entries="@array/gt_majors"
+                            android:textColor="@color/gt_slate"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_marginLeft="-6dp"/>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Extroversion"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgIntroversion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbIntro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Introvert"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbAmbi"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Ambivert"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbExtro"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Extrovert"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="How often do you go out?"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgSocial"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbNever"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Never"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbSometimes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Sometimes"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbOften"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Often"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Noise Level"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <com.google.android.material.slider.Slider
+                        android:id="@+id/seekBarNoise"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:valueFrom="0"
+                        android:valueTo="20"
+                        android:value="10"
+                        style="@style/Widget.Material3.Slider"
+                        app:tickVisible="false"
+                        app:labelBehavior="withinBounds"
+                        app:trackColorActive="@color/gt_gold"
+                        app:trackColorInactive="@color/gt_navy_tint"
+                        app:thumbColor="@color/gt_navy_light"
+                        app:thumbTint="@color/gt_gold"/>
+
+                    <TextView
+                        android:id="@+id/tvNoise"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Noise Level: "
+                        android:textColor="@color/gt_slate"
+                        android:layout_marginTop="6dp"/>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -251,6 +503,73 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="When do you wake up?"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <RadioGroup
+                        android:id="@+id/rgWakeUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbWake0"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Before 5 AM" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbWake1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="5 - 7 AM" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbWake2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="7 - 9 AM" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbWake3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="9 - 11 AM" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbWake4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="After 11 AM" />
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <!-- Cleanliness -->
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
@@ -281,6 +600,7 @@
                         android:valueFrom="0"
                         android:valueTo="20"
                         android:value="10"
+                        style="@style/Widget.Material3.Slider"
                         app:tickVisible="false"
                         app:labelBehavior="withinBounds"
                         app:trackColorActive="@color/gt_gold"
@@ -347,6 +667,99 @@
                             android:text="Off campus"/>
                     </RadioGroup>
 
+                    <LinearLayout
+                        android:id="@+id/layoutOff"
+                        android:visibility="gone"
+                        android:orientation="vertical"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvLease"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Length of Lease"
+                            android:textStyle="bold"
+                            android:textColor="@color/gt_slate"
+                            android:layout_marginTop="12dp"
+                            android:textSize="16sp"/>
+
+                            <RadioGroup
+                                android:id="@+id/rgLease"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingTop="8dp">
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/rbSemester"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:buttonTint="@color/gt_gold"
+                                    android:text="Semester"/>
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/rbYear"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:buttonTint="@color/gt_gold"
+                                    android:text="2 Semesters"/>
+
+                                <com.google.android.material.radiobutton.MaterialRadioButton
+                                    android:id="@+id/rbFlexible"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:buttonTint="@color/gt_gold"
+                                    android:text="Flexible"/>
+                            </RadioGroup>
+
+                            <LinearLayout
+                                android:padding="16dp"
+                                android:orientation="vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Maximum expected rent"
+                                    android:textStyle="bold"
+                                    android:textColor="@color/gt_slate"
+                                    android:textSize="16sp"/>
+
+                                <com.google.android.material.slider.Slider
+                                    android:id="@+id/seekBarMaxRent"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:valueFrom="0"
+                                    android:valueTo="7"
+                                    android:value="1"
+                                    android:stepSize=".01"
+                                    app:tickVisible="false"
+                                    style="@style/Widget.Material3.Slider"
+                                    app:labelBehavior="withinBounds"
+                                    app:trackColorActive="@color/gt_gold"
+                                    app:trackColorInactive="@color/gt_navy_tint"
+                                    app:thumbColor="@color/gt_navy_light"
+                                    app:thumbTint="@color/gt_gold"/>
+
+                                <TextView
+                                    android:id="@+id/rentValue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Maximum expected rent: $1400"
+                                    android:textColor="@color/gt_slate"
+                                    android:layout_marginTop="6dp"/>
+                            </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/layoutOn"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/tvLocation"
                         android:layout_width="wrap_content"
@@ -355,15 +768,13 @@
                         android:textStyle="bold"
                         android:textColor="@color/gt_slate"
                         android:layout_marginTop="12dp"
-                        android:visibility="gone"
                         android:textSize="16sp"/>
 
                     <RadioGroup
                         android:id="@+id/rgLocation"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
-                        android:visibility="gone"
                         android:paddingTop="8dp">
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -398,7 +809,6 @@
                         android:textStyle="bold"
                         android:textColor="@color/gt_slate"
                         android:layout_marginTop="12dp"
-                        android:visibility="gone"
                         android:textSize="16sp"/>
 
                     <RadioGroup
@@ -406,7 +816,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility="gone"
                         android:paddingTop="8dp">
 
                         <com.google.android.material.radiobutton.MaterialRadioButton
@@ -445,9 +854,183 @@
                             android:text="Global Leadership"/>
                     </RadioGroup>
                 </LinearLayout>
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <!-- Max Rent -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:id="@+id/layoutRoommates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvRoommates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number of Roommates"
+                android:textStyle="bold"
+                android:textColor="@color/gt_slate"
+                android:textSize="16sp"/>
+
+            <RadioGroup
+                android:id="@+id/rgRoommates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingTop="8dp">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbr1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="@color/gt_gold"
+                    android:text="1 Roommate"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbr2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="@color/gt_gold"
+                    android:text="2 Roommates"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbr3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="@color/gt_gold"
+                    android:text="3 Roommates"/>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/rbr4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:buttonTint="@color/gt_gold"
+                    android:text="More than 3 Roommates"/>
+
+            </RadioGroup>
+
+        </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Are you ok with guests?"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgGuests"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbGuestNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="No"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbGuestSome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="From time to time"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbGuestYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Yes"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Are you ok with sharing?"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <RadioGroup
+                        android:id="@+id/rgSharing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="8dp">
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="No"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbSome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Some things"/>
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/rbYes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            app:buttonTint="@color/gt_gold"
+                            android:text="Yes"/>
+                    </RadioGroup>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -465,35 +1048,202 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maximum expected rent"
+                        android:text="Deal breakers"
                         android:textStyle="bold"
                         android:textColor="@color/gt_slate"
                         android:textSize="16sp"/>
 
-                    <com.google.android.material.slider.Slider
-                        android:id="@+id/seekBarMaxRent"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:valueFrom="0"
-                        android:valueTo="7"
-                        android:value="1"
-                        android:stepSize=".01"
-                        app:tickVisible="false"
-                        app:labelBehavior="withinBounds"
-                        app:trackColorActive="@color/gt_gold"
-                        app:trackColorInactive="@color/gt_navy_tint"
-                        app:thumbColor="@color/gt_navy_light"
-                        app:thumbTint="@color/gt_gold"/>
-
                     <TextView
-                        android:id="@+id/rentValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Maximum expected rent: $1400"
+                        android:text="You will not be suggested profiles that don't match your answers in these categories"
+                        android:layout_marginVertical="10dp"
                         android:textColor="@color/gt_slate"
-                        android:layout_marginTop="6dp"/>
+                        />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="1dp">
+
+
+                    <Spinner
+                        android:id="@+id/dealBreak"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:entries="@array/preference_fields"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"
+                        android:padding="8dp"
+                        android:layout_marginVertical="5dp"
+                        android:layout_marginLeft="-6dp"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            app:cardCornerRadius="20dp"
+                            app:strokeColor="@color/gt_gold"
+                            app:strokeWidth="1dp">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/dealBreakRecycler"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:clipToPadding="false"
+                                app:background="@color/gt_white"/>
+                        </com.google.android.material.card.MaterialCardView>
+
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="20dp"
+                app:strokeColor="@color/gt_gold"
+                app:strokeWidth="1dp">
+
+                <LinearLayout
+                    android:padding="16dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Miscellaneous tags"
+                        android:textStyle="bold"
+                        android:textColor="@color/gt_slate"
+                        android:textSize="16sp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add these tags to be visible on your profile and match with others who have the same tags"
+                        android:layout_marginVertical="10dp"
+                        android:textColor="@color/gt_slate"
+                        />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="15dp"
+                        app:cardCornerRadius="20dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="1dp">
+
+
+                        <Spinner
+                            android:id="@+id/miscSpinner"
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:textColor="@color/gt_slate"
+                            android:textSize="16sp"
+                            android:padding="8dp"
+                            android:layout_marginVertical="5dp"
+                            android:layout_marginLeft="-6dp"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="20dp"
+                        app:strokeColor="@color/gt_gold"
+                        app:strokeWidth="1dp">
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/miscRecycler"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="10dp"
+                            android:clipToPadding="false"
+                            app:background="@color/gt_white"/>
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+<!--            <com.google.android.material.card.MaterialCardView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginBottom="12dp"-->
+<!--                app:cardCornerRadius="20dp"-->
+<!--                app:strokeColor="@color/gt_gold"-->
+<!--                app:strokeWidth="1dp">-->
+
+<!--                <LinearLayout-->
+<!--                    android:padding="16dp"-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Profile card tags"-->
+<!--                        android:textStyle="bold"-->
+<!--                        android:textColor="@color/gt_slate"-->
+<!--                        android:textSize="16sp"/>-->
+
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:text="Add three tags that will be displayed on your user card that will be visible when another user searches your profile"-->
+<!--                        android:layout_marginVertical="10dp"-->
+<!--                        android:textColor="@color/gt_slate"-->
+<!--                        />-->
+
+
+<!--                    <com.google.android.material.card.MaterialCardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginBottom="15dp"-->
+<!--                        app:cardCornerRadius="20dp"-->
+<!--                        app:strokeColor="@color/gt_gold"-->
+<!--                        app:strokeWidth="1dp">-->
+
+
+<!--                        <Spinner-->
+<!--                            android:id="@+id/tagSpinner"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="40dp"-->
+<!--                            android:textColor="@color/gt_slate"-->
+<!--                            android:textSize="16sp"-->
+<!--                            android:padding="8dp"-->
+<!--                            android:layout_marginVertical="5dp"-->
+<!--                            android:layout_marginLeft="-6dp"/>-->
+<!--                    </com.google.android.material.card.MaterialCardView>-->
+
+<!--                    <com.google.android.material.card.MaterialCardView-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="0dp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        app:cardCornerRadius="20dp"-->
+<!--                        app:strokeColor="@color/gt_gold"-->
+<!--                        app:strokeWidth="1dp">-->
+
+<!--                        <androidx.recyclerview.widget.RecyclerView-->
+<!--                            android:id="@+id/tagRecycler"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:padding="10dp"-->
+<!--                            android:clipToPadding="false"-->
+<!--                            app:background="@color/gt_white"/>-->
+<!--                    </com.google.android.material.card.MaterialCardView>-->
+
+<!--                </LinearLayout>-->
+<!--            </com.google.android.material.card.MaterialCardView>-->
 
             <!-- Profile Visibility Switch -->
             <com.google.android.material.card.MaterialCardView

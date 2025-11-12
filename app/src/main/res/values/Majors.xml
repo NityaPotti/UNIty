@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="gt_majors">
+        <item>Undecided</item>
+        <item>Aerospace Engineering</item>
+        <item>Applied Language and Intercultural Studies</item>
+        <item>Applied Physics</item>
+        <item>Architecture</item>
+        <item>Arts, Entertainment, and Creative Technologies</item>
+        <item>Astrophysics</item>
+        <item>Atmospheric and Oceanic Sciences</item>
+        <item>Biochemistry</item>
+        <item>Biology</item>
+        <item>Biomedical Engineering</item>
+        <item>Business Administration</item>
+        <item>Chemical and Biomolecular Engineering</item>
+        <item>Chemistry</item>
+        <item>Civil Engineering</item>
+        <item>Computational Media</item>
+        <item>Computer Engineering</item>
+        <item>Computer Engineering Dual</item>
+        <item>Computer Science</item>
+        <item>Construction Science and Management</item>
+        <item>Earth and Atmospheric Sciences</item>
+        <item>Economics</item>
+        <item>Economics and International Affairs</item>
+        <item>Electrical Engineering</item>
+        <item>Environmental Engineering</item>
+        <item>Environmental Science</item>
+        <item>History, Technology, and Society</item>
+        <item>Industrial Design</item>
+        <item>Industrial Engineering</item>
+        <item>International Affairs</item>
+        <item>International Affairs and Modern Languages</item>
+        <item>Literature, Media, and Communication</item>
+        <item>Materials Science and Engineering</item>
+        <item>Mathematics</item>
+        <item>Mathematics and Computing</item>
+        <item>Mechanical Engineering</item>
+        <item>Music Technology</item>
+        <item>Neuroscience</item>
+        <item>Nuclear and Radiological Engineering</item>
+        <item>Physics</item>
+        <item>Psychology</item>
+        <item>Public Policy</item>
+        <item>Solid Earth and Planetary Sciences</item>
+        <item>Urban Planning and Spatial Analytics</item>
+    </string-array>
+
+</resources>

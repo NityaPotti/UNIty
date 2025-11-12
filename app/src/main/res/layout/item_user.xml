@@ -9,6 +9,7 @@
     android:background="@color/gt_white">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/recyclerUser"
         android:layout_width="match_parent"
         android:layout_height="85dp"
         app:strokeColor="@color/gt_gold"
