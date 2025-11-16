@@ -1,4 +1,5 @@
 package com.nityapotti.unity.ui.fragments
+import com.nityapotti.unity.views.SuggestedFragment
 
 import android.os.Bundle
 import android.widget.ImageView

@@ -1,5 +1,9 @@
 package com.nityapotti.unity.models
 
+data class RankPair(
+    val key: String = "",
+    val value: String = ""
+)
 data class Preference (
     val id: String = "",
     val visible: Boolean = false,
@@ -25,6 +29,6 @@ data class Preference (
     val sharing: String = "",
     val dealbreakers: List<String> = emptyList(),
     val misc: List<String> = emptyList(),
+    val ranking: List<RankPair> = emptyList(),
     val tags: List<String> = emptyList()
-
     )

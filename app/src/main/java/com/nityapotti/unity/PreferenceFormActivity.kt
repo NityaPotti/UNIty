@@ -32,6 +32,8 @@ import com.nityapotti.unity.adapters.DealBreakerAdapter
 import android.util.Log
 import com.google.common.collect.ArrayTable
 import com.nityapotti.unity.adapters.MiscAdapter
+import com.nityapotti.unity.ui.fragments.PreferenceFragment
+
 //import com.nityapotti.unity.adapters.TagAdapter
 
 class PreferenceFormActivity : AppCompatActivity() {
@@ -623,7 +625,13 @@ class PreferenceFormActivity : AppCompatActivity() {
                     .set(userPref)
                     .addOnSuccessListener {
                         Toast.makeText(this, "Preferences Saved!", Toast.LENGTH_SHORT).show()
-                        finish()
+                        val fragment = PreferenceFragment()
+                        val activityContent = findViewById<View>(R.id.container)
+                        activityContent.visibility = View.GONE
+                        supportFragmentManager.beginTransaction()
+                            .replace(R.id.preferenceFragmentContainer, fragment)
+                            .addToBackStack(null)
+                            .commit()
                     }
                     .addOnFailureListener {
                         Toast.makeText(this, "Something Went Wrong", Toast.LENGTH_SHORT).show()
