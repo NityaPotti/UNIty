@@ -200,7 +200,7 @@ class RoommateFinderFragment : Fragment() {
                     if (!majorList.contains(selectedItem)) {
                         majorAdapter.addItem(selectedItem)
                     }
-                    majorRecycler.visibility = View.VISIBLE  // Move this here
+                    majorRecycler.visibility = View.VISIBLE
                 }
 
             override fun onNothingSelected(parent: AdapterView<*>) {

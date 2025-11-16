@@ -27,7 +27,6 @@ class YearAdapter(
         val item = yearItems[position]
         holder.preferenceText.text = item
 
-        // Use adapterPosition to get the current position at click time
         holder.xButton.setOnClickListener {
             val currentPosition = holder.adapterPosition
             if (currentPosition != RecyclerView.NO_POSITION) {
@@ -42,7 +41,7 @@ class YearAdapter(
         if (position >= 0 && position < yearItems.size) {
             yearItems.removeAt(position)
             notifyItemRemoved(position)
-            // Optional: notify about range change for smoother animations
+
             if (position < yearItems.size) {
                 notifyItemRangeChanged(position, yearItems.size - position)
             }
